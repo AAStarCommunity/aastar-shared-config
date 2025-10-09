@@ -16,10 +16,10 @@ export const CONTRACTS = {
     simpleAccount: "0x94FC9B8B7cAb56C01f20A24E37C2433FCe88A10D",
     treasury: "0x411BD567E46C0781248dbB6a9211891C032885e5",
 
-    // Factories (to be deployed)
-    simpleAccountFactory: "", // Will be updated after deployment
+    // Factories (deployed)
+    simpleAccountFactory: "0x9bD66892144FCf0BAF5B6946AEAFf38B0d967881",
     gasTokenFactory: "",
-    usdtToken: "", // Mock USDT to be deployed
+    usdtToken: "0x14EaC6C3D49AEDff3D59773A7d7bfb50182bCfDc", // Mock USDT
 
     // Registry (if deployed)
     superPaymasterRegistry: "",
