@@ -18,11 +18,11 @@ export const CONTRACTS = {
 
     // Factories (deployed)
     simpleAccountFactory: "0x9bD66892144FCf0BAF5B6946AEAFf38B0d967881",
-    gasTokenFactory: "",
+    gasTokenFactory: "0x6720Dc8ce5021bC6F3F126054556b5d3C125101F", // GasTokenFactoryV2
     usdtToken: "0x14EaC6C3D49AEDff3D59773A7d7bfb50182bCfDc", // Mock USDT
 
-    // Registry (if deployed)
-    superPaymasterRegistry: "",
+    // Registry (deployed)
+    superPaymasterRegistry: "0x838da93c815a6E45Aa50429529da9106C0621eF0", // SuperPaymasterRegistry v1.2
   },
 } as const;
 
