@@ -1,0 +1,41 @@
+{
+  "name": "@aastar/shared-config",
+  "version": "0.1.0",
+  "description": "Shared configuration for AAStar Community projects",
+  "type": "module",
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsup src/index.ts --format cjs,esm --dts",
+    "dev": "tsup src/index.ts --format cjs,esm --dts --watch",
+    "prepublishOnly": "pnpm build"
+  },
+  "keywords": [
+    "aastar",
+    "ethereum",
+    "web3",
+    "account-abstraction"
+  ],
+  "author": "AAStar Community",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^24.7.0",
+    "tsup": "^8.0.1",
+    "typescript": "^5.3.3"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AAStarCommunity/aastar-shared-config.git"
+  }
+}
