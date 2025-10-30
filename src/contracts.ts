@@ -11,6 +11,7 @@
 export type ContractCategory =
   | 'core'          // SuperPaymaster V2, Registry, GToken, GTokenStaking
   | 'tokens'        // xPNTs, MySBT
+  | 'testTokens'    // Mock tokens for testing (USDT, etc.)
   | 'paymaster'     // PaymasterV4 (AOA mode)
   | 'monitoring'    // DVT, BLS
   | 'official';     // EntryPoint
@@ -45,6 +46,14 @@ export const SEPOLIA_CONTRACTS = {
 
     /** MySBT v2.3 - White-label SBT for community identity (deployed: 2025-10-28) */
     mySBT: '0xc1085841307d85d4a8dC973321Df2dF7c01cE5C8',
+  },
+
+  // ========================================
+  // Test Tokens (For Development & Testing)
+  // ========================================
+  testTokens: {
+    /** Mock USDT - Test token for payment testing (6 decimals) */
+    mockUSDT: '0x14EaC6C3D49AEDff3D59773A7d7bfb50182bCfDc',
   },
 
   // ========================================
@@ -180,6 +189,22 @@ export function getCoreContracts(network: ContractNetwork) {
  */
 export function getTokenContracts(network: ContractNetwork) {
   return getContracts(network).tokens;
+}
+
+/**
+ * Get test token contracts (for development & testing)
+ *
+ * @param network - Network name
+ * @returns Test token contract addresses
+ *
+ * @example
+ * ```ts
+ * const testTokens = getTestTokenContracts('sepolia');
+ * console.log(testTokens.mockUSDT);
+ * ```
+ */
+export function getTestTokenContracts(network: ContractNetwork) {
+  return getContracts(network).testTokens;
 }
 
 /**

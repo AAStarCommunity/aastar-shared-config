@@ -5,6 +5,16 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.2.2] - 2025-10-30
+
+### Added
+- **Test Tokens category**: Added `testTokens` section for development and testing contracts
+- **Mock USDT**: Added Mock USDT contract address (`0x14EaC6C3D49AEDff3D59773A7d7bfb50182bCfDc`)
+- **getTestTokenContracts()**: New helper function to retrieve test token addresses
+
+### Changed
+- Updated `ContractCategory` type to include `'testTokens'`
+
 ## [0.2.1] - 2025-10-30
 
 ### Fixed
