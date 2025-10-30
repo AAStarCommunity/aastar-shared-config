@@ -27,14 +27,14 @@ export const SEPOLIA_CONTRACTS = {
     /** SuperPaymaster V2 - Shared paymaster for AOA+ mode (deployed: 2025-10-25) */
     superPaymasterV2: '0x50c4Daf685170aa29513BA6dd89B8417b5b0FE4a',
 
-    /** Registry v2.1.1 - Community registration with permissionless mint (deployed: 2025-10-30) */
-    registry: '0x3955C0Fd9C44EB9b0A9FCC8cb60893d4Ad4730FC',
+    /** Registry v2.1.3 - Community registration with transferCommunityOwnership (deployed: 2025-10-30) */
+    registry: '0xd8f50dcF723Fb6d0Ec555691c3a19E446a3bb765',
 
     /** GToken - Governance token (sGT) (deployed: 2025-10-24) */
     gToken: '0x868F843723a98c6EECC4BF0aF3352C53d5004147',
 
-    /** GTokenStaking - Stake, lock, slash management (deployed: 2025-10-24) */
-    gTokenStaking: '0x92eD5b659Eec9D5135686C9369440D71e7958527',
+    /** GTokenStaking v2 - Permissionless multiple stake additions (deployed: 2025-10-30) */
+    gTokenStaking: '0xB39c0c3c7Fac671Ce26acD7Be5d81192DDc8bB27',
   },
 
   // ========================================
@@ -44,8 +44,8 @@ export const SEPOLIA_CONTRACTS = {
     /** xPNTsFactory - Unified architecture gas token factory (deployed: 2025-10-30) */
     xPNTsFactory: '0xC2AFEA0F736403E7e61D3F7C7c6b4E5E63B5cab6',
 
-    /** MySBT v2.3.1 - White-label SBT with permissionless mint (deployed: 2025-10-30, redeployed with correct Registry) */
-    mySBT: '0x0e56697461b4f8f6C19e7636EE4064920B829e00',
+    /** MySBT v2.3.3 - White-label SBT with exit mechanism (deployed: 2025-10-30, burnSBT function) */
+    mySBT: '0x3cE0AB2a85Dc4b2B1976AA924CF8047F7afA9324',
   },
 
   // ========================================
@@ -294,13 +294,13 @@ export const CONTRACT_METADATA = {
     deploymentDates: {
       // Core System
       superPaymasterV2: '2025-10-25',
-      registry: '2025-10-30',
+      registry: '2025-10-30',  // v2.1.3 with transferCommunityOwnership
       gToken: '2025-10-24',
-      gTokenStaking: '2025-10-24',
+      gTokenStaking: '2025-10-30',  // v2 with permissionless multiple stake additions
 
       // Tokens
       xPNTsFactory: '2025-10-30',
-      mySBT: '2025-10-30',
+      mySBT: '2025-10-30',  // v2.3.3 with burnSBT exit mechanism
 
       // Paymaster
       paymasterV4: '2025-10-15',
