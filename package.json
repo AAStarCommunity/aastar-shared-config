@@ -1,6 +1,6 @@
 {
   "name": "@aastar/shared-config",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Shared configuration for AAStar Community projects",
   "type": "module",
   "main": "./dist/index.js",
