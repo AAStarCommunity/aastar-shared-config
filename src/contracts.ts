@@ -44,8 +44,8 @@ export const SEPOLIA_CONTRACTS = {
     /** xPNTsFactory - Unified architecture gas token factory (deployed: 2025-10-30) */
     xPNTsFactory: '0xC2AFEA0F736403E7e61D3F7C7c6b4E5E63B5cab6',
 
-    /** MySBT v2.3.1 - White-label SBT with permissionless mint (deployed: 2025-10-30) */
-    mySBT: '0xc9B2B7A9b28B12e43398Ae46fE319E248893691C',
+    /** MySBT v2.3.1 - White-label SBT with permissionless mint (deployed: 2025-10-30, redeployed with correct Registry) */
+    mySBT: '0x0e56697461b4f8f6C19e7636EE4064920B829e00',
   },
 
   // ========================================
