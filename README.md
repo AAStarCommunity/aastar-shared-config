@@ -179,15 +179,16 @@ console.log(networks); // ['sepolia']
 
 ## Using ABIs
 
+Contract ABIs are included in the package but not exported from the main entry point to avoid TypeScript declaration issues. Import them directly from the JSON files:
+
 ```typescript
-import {
-  PaymasterV4ABI,
-  SimpleAccountABI,
-  SimpleAccountFactoryABI
-} from '@aastar/shared-config';
 import { ethers } from 'ethers';
+import { getPaymasterV4 } from '@aastar/shared-config';
+// Import ABI from JSON file
+import PaymasterV4ABI from '@aastar/shared-config/src/abis/PaymasterV4.json';
 
 // Create contract instance
+const paymasterAddress = getPaymasterV4('sepolia');
 const paymaster = new ethers.Contract(
   paymasterAddress,
   PaymasterV4ABI,
@@ -197,6 +198,12 @@ const paymaster = new ethers.Contract(
 // Call contract methods
 const isSupported = await paymaster.isSupportedSBT(sbtAddress);
 ```
+
+Available ABIs:
+- `@aastar/shared-config/src/abis/PaymasterV4.json`
+- `@aastar/shared-config/src/abis/GasTokenV2.json`
+- `@aastar/shared-config/src/abis/SimpleAccount.json`
+- `@aastar/shared-config/src/abis/SimpleAccountFactory.json`
 
 ## Constants
 

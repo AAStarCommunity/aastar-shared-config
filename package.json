@@ -1,6 +1,6 @@
 {
   "name": "@aastar/shared-config",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Shared configuration for AAStar Community projects",
   "type": "module",
   "main": "./dist/index.js",
@@ -14,7 +14,8 @@
     }
   },
   "files": [
-    "dist"
+    "dist",
+    "src/abis"
   ],
   "scripts": {
     "build": "tsup src/index.ts --format cjs,esm --dts",

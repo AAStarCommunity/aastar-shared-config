@@ -8,4 +8,7 @@ export * from './branding';
 export * from './contracts';
 export * from './networks';
 export * from './constants';
-export * from './abis';
+
+// ABIs are available but not exported from main entry to avoid TypeScript declaration issues
+// Import ABIs directly from JSON files when needed:
+// import PaymasterV4ABI from '@aastar/shared-config/dist/abis/PaymasterV4.json';
