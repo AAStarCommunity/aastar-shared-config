@@ -27,8 +27,8 @@ export const SEPOLIA_CONTRACTS = {
     /** SuperPaymaster V2 - Shared paymaster for AOA+ mode (deployed: 2025-10-25) */
     superPaymasterV2: '0x50c4Daf685170aa29513BA6dd89B8417b5b0FE4a',
 
-    /** Registry v2.1 - Community registration with node types (deployed: 2025-10-27) */
-    registry: '0x529912C52a934fA02441f9882F50acb9b73A3c5B',
+    /** Registry v2.1.1 - Community registration with permissionless mint (deployed: 2025-10-30) */
+    registry: '0x3955C0Fd9C44EB9b0A9FCC8cb60893d4Ad4730FC',
 
     /** GToken - Governance token (sGT) (deployed: 2025-10-24) */
     gToken: '0x868F843723a98c6EECC4BF0aF3352C53d5004147',
@@ -44,8 +44,8 @@ export const SEPOLIA_CONTRACTS = {
     /** xPNTsFactory - Unified architecture gas token factory (deployed: 2025-10-30) */
     xPNTsFactory: '0xC2AFEA0F736403E7e61D3F7C7c6b4E5E63B5cab6',
 
-    /** MySBT v2.3 - White-label SBT for community identity (deployed: 2025-10-28) */
-    mySBT: '0xc1085841307d85d4a8dC973321Df2dF7c01cE5C8',
+    /** MySBT v2.3.1 - White-label SBT with permissionless mint (deployed: 2025-10-30) */
+    mySBT: '0xc9B2B7A9b28B12e43398Ae46fE319E248893691C',
   },
 
   // ========================================
@@ -294,13 +294,13 @@ export const CONTRACT_METADATA = {
     deploymentDates: {
       // Core System
       superPaymasterV2: '2025-10-25',
-      registry: '2025-10-27',
+      registry: '2025-10-30',
       gToken: '2025-10-24',
       gTokenStaking: '2025-10-24',
 
       // Tokens
       xPNTsFactory: '2025-10-30',
-      mySBT: '2025-10-28',
+      mySBT: '2025-10-30',
 
       // Paymaster
       paymasterV4: '2025-10-15',
