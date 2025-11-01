@@ -33,8 +33,8 @@ export const SEPOLIA_CONTRACTS = {
     /** GToken - Governance token (sGT) (deployed: 2025-10-24) */
     gToken: '0x868F843723a98c6EECC4BF0aF3352C53d5004147',
 
-    /** GTokenStaking v2 - Permissionless multiple stake additions (deployed: 2025-10-30) */
-    gTokenStaking: '0xB39c0c3c7Fac671Ce26acD7Be5d81192DDc8bB27',
+    /** GTokenStaking v2 - User-level slash + 1:1 shares (deployed: 2025-10-31) */
+    gTokenStaking: '0xDAD0EC96335f88A5A38aAd838daD4FE541744C2a',
   },
 
   // ========================================
@@ -296,7 +296,7 @@ export const CONTRACT_METADATA = {
       superPaymasterV2: '2025-10-25',
       registry: '2025-10-30',  // v2.1.3 with transferCommunityOwnership
       gToken: '2025-10-24',
-      gTokenStaking: '2025-10-30',  // v2 with permissionless multiple stake additions
+      gTokenStaking: '2025-10-31',  // v2 with user-level slash + 1:1 shares model
 
       // Tokens
       xPNTsFactory: '2025-10-30',
