@@ -12,13 +12,13 @@
  * Contract category types
  */
 export type ContractCategory =
-  | 'core'          // SuperPaymaster V2, Registry, GToken, GTokenStaking
-  | 'tokens'        // xPNTs, MySBT, aPNTs
-  | 'testTokens'    // Mock tokens for testing (USDT, etc.)
-  | 'factories'     // PaymasterFactory
+  | 'core'          // SuperPaymaster V2, Registry, GToken, GTokenStaking, PaymasterFactory
+  | 'tokens'        // xPNTsFactory, MySBT
+  | 'testTokens'    // Mock tokens for testing (USDT, aPNTs, bPNTs)
   | 'paymaster'     // PaymasterV4_1 (AOA mode)
   | 'monitoring'    // DVT, BLS
-  | 'official';     // EntryPoint
+  | 'official'      // EntryPoint
+  | 'communities';  // Registered communities (AAStar, BuilderDAO)
 
 /**
  * Sepolia Testnet Contracts
@@ -29,16 +29,19 @@ export const SEPOLIA_CONTRACTS = {
   // ========================================
   core: {
     /** SuperPaymaster V2 - Shared paymaster for AOA+ mode (deployed: 2025-11-01) */
-    superPaymasterV2: '0xB97A20aca3D6770Deca299a1aD9DAFb12d1e5eCf',
+    superPaymasterV2: '0x95B20d8FdF173a1190ff71e41024991B2c5e58eF',
 
-    /** Registry v2.1.3 - Community registration with transferCommunityOwnership (deployed: 2025-11-01) */
-    registry: '0x4572cEEA2B9f7d1f202c533474DeaaCe3E38b1dB',
+    /** Registry v2.1.3 - Community registration with new GTokenStaking (deployed: 2025-11-01) */
+    registry: '0xb6286F53d8ff25eF99e6a43b2907B8e6BD0f019A',
 
-    /** GToken - Governance token (sGT) (deployed: 2025-10-24) */
-    gToken: '0x868F843723a98c6EECC4BF0aF3352C53d5004147',
+    /** GToken v2.0.0 - Governance token with VERSION interface (deployed: 2025-11-01) */
+    gToken: '0x99cCb70646Be7A5aeE7aF98cE853a1EA1A676DCc',
 
-    /** GTokenStaking v2.0.0 - User-level slash + 1:1 shares (deployed: 2025-11-01) */
-    gTokenStaking: '0x7b0bb7D5a5bf7A5839A6e6B53bDD639865507A69',
+    /** GTokenStaking v2.0.0 - User-level slash + 1:1 shares with new GToken (deployed: 2025-11-01) */
+    gTokenStaking: '0x60Bd54645b0fDabA1114B701Df6f33C4ecE87fEa',
+
+    /** PaymasterFactory v1.0.0 - Permissionless Paymaster deployment using EIP-1167 (deployed: 2025-11-01) */
+    paymasterFactory: '0x65Cf6C4ab3d40f3C919b6F3CADC09Efb72817920',
   },
 
   // ========================================
@@ -46,13 +49,10 @@ export const SEPOLIA_CONTRACTS = {
   // ========================================
   tokens: {
     /** xPNTsFactory v2.0.0 - Unified architecture gas token factory (deployed: 2025-11-01) */
-    xPNTsFactory: '0x787409E0510edc750d6cAd58792D01B9e3f52714',
+    xPNTsFactory: '0x9dD72cB42427fC9F7Bf0c949DB7def51ef29D6Bd',
 
     /** MySBT v2.4.0 - White-label SBT with NFT refactor (deployed: 2025-11-01) */
-    mySBT: '0x65Cf6C4ab3d40f3C919b6F3CADC09Efb72817920',
-
-    /** aPNTs (xPNTsToken) - AAStar community gas token (deployed: 2025-10-30) */
-    aPNTs: '0xD11527ae56B6543a679e50408BE4aeE0f418ef9f',
+    mySBT: '0x73E635Fc9eD362b7061495372B6eDFF511D9E18F',
   },
 
   // ========================================
@@ -61,14 +61,12 @@ export const SEPOLIA_CONTRACTS = {
   testTokens: {
     /** Mock USDT - Test token for payment testing (6 decimals) */
     mockUSDT: '0x14EaC6C3D49AEDff3D59773A7d7bfb50182bCfDc',
-  },
 
-  // ========================================
-  // Factory System
-  // ========================================
-  factories: {
-    /** PaymasterFactory v1.0.0 - Permissionless Paymaster deployment using EIP-1167 (deployed: 2025-11-01) */
-    paymasterFactory: '0xA32bcb29295Dbc19c92cFC1B0701A7A0e12D26B5',
+    /** aPNTs v2.0.0 - AAStar community gas token for testing (deployed: 2025-11-01) */
+    aPNTs: '0xBD0710596010a157B88cd141d797E8Ad4bb2306b',
+
+    /** bPNTs v2.0.0 - BuilderDAO community gas token for testing (deployed: 2025-11-01) */
+    bPNTs: '0xF223660d24c436B5BfadFEF68B5051bf45E7C995',
   },
 
   // ========================================
@@ -84,10 +82,10 @@ export const SEPOLIA_CONTRACTS = {
   // ========================================
   monitoring: {
     /** DVTValidator v2.0.0 - Distributed validator management (deployed: 2025-11-01) */
-    dvtValidator: '0x95B20d8FdF173a1190ff71e41024991B2c5e58eF',
+    dvtValidator: '0x937CdD172fb0674Db688149093356F6dA95498FD',
 
     /** BLSAggregator v2.0.0 - BLS signature aggregation (deployed: 2025-11-01) */
-    blsAggregator: '0x22560129Ba328F6895805CC0Fe884E8c84F5FCD8',
+    blsAggregator: '0x3Cf0587912c692aa0f5FEEEDC52959ABEEEFaEc6',
   },
 
   // ========================================
@@ -96,6 +94,29 @@ export const SEPOLIA_CONTRACTS = {
   official: {
     /** EntryPoint v0.7 - ERC-4337 official EntryPoint (cross-chain address) */
     entryPoint: '0x0000000071727De22E5E9d8BAf0edAc6f37da032',
+  },
+
+  // ========================================
+  // Test Communities (For Development & Testing)
+  // ========================================
+  communities: {
+    /** AAStar Community - Test community for development (registered: 2025-11-01) */
+    aastar: {
+      owner: '0x411BD567E46C0781248dbB6a9211891C032885e5', // Deployer 1
+      gasToken: '0xBD0710596010a157B88cd141d797E8Ad4bb2306b', // aPNTs (test token)
+      ensName: 'aastar.eth',
+      name: 'AAStar',
+      stake: '50', // 50 GToken staked in Registry
+    },
+
+    /** BuilderDAO Community - Test community for development (registered: 2025-11-01) */
+    builderDao: {
+      owner: '0x3c053322AfBEB5B2C9917A6Cbda590f1736590cd', // Deployer 2
+      gasToken: '0xF223660d24c436B5BfadFEF68B5051bf45E7C995', // bPNTs (test token)
+      ensName: 'builderdao.eth',
+      name: 'BuilderDAO',
+      stake: '50', // 50 GToken staked in Registry
+    },
   },
 } as const;
 
@@ -308,9 +329,9 @@ export const CONTRACT_METADATA = {
     networkId: 11155111,
     deploymentDates: {
       // Core System
+      gToken: '2025-11-01',            // v2.0.0 with VERSION interface
       superPaymasterV2: '2025-11-01',  // v2.0.0 with VERSION interface
       registry: '2025-11-01',          // v2.1.3 with VERSION interface
-      gToken: '2025-10-24',
       gTokenStaking: '2025-11-01',     // v2.0.0 with VERSION interface
 
       // Tokens
@@ -351,4 +372,37 @@ export function getDeploymentDate(network: ContractNetwork, contractName: string
   if (!metadata) return undefined;
 
   return (metadata.deploymentDates as Record<string, string>)[contractName];
+}
+
+/**
+ * Get registered communities
+ *
+ * @param network - Network name
+ * @returns Communities object
+ *
+ * @example
+ * ```ts
+ * const communities = getCommunities('sepolia');
+ * console.log(communities.aastar.owner);
+ * ```
+ */
+export function getCommunities(network: ContractNetwork) {
+  return getContracts(network).communities;
+}
+
+/**
+ * Get a specific community
+ *
+ * @param network - Network name
+ * @param communityName - Community name (aastar, builderDao)
+ * @returns Community information
+ *
+ * @example
+ * ```ts
+ * const aastar = getCommunity('sepolia', 'aastar');
+ * console.log(aastar.gasToken); // aPNTs address
+ * ```
+ */
+export function getCommunity(network: ContractNetwork, communityName: 'aastar' | 'builderDao') {
+  return getCommunities(network)[communityName];
 }

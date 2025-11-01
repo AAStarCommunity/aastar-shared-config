@@ -34,12 +34,26 @@ export const SEPOLIA_V2_VERSIONS = {
   // Core System
   // ========================================
   core: {
+    gToken: {
+      name: 'GToken',
+      version: '2.0.0',
+      versionCode: 20000,
+      deployedAt: '2025-11-01',
+      address: '0x99cCb70646Be7A5aeE7aF98cE853a1EA1A676DCc',
+      features: [
+        'VERSION interface',
+        'ERC20 governance token',
+        'Mintable with cap',
+        'Ownable',
+      ],
+    } as ContractVersion,
+
     superPaymasterV2: {
       name: 'SuperPaymasterV2',
       version: '2.0.0',
       versionCode: 20000,
       deployedAt: '2025-11-01',
-      address: '0xB97A20aca3D6770Deca299a1aD9DAFb12d1e5eCf',
+      address: '0x95B20d8FdF173a1190ff71e41024991B2c5e58eF',
       features: [
         'VERSION interface',
         'Unified architecture',
@@ -54,13 +68,14 @@ export const SEPOLIA_V2_VERSIONS = {
       version: '2.1.3',
       versionCode: 20103,
       deployedAt: '2025-11-01',
-      address: '0x4572cEEA2B9f7d1f202c533474DeaaCe3E38b1dB',
+      address: '0xb6286F53d8ff25eF99e6a43b2907B8e6BD0f019A',
       features: [
         'VERSION interface',
         'transferCommunityOwnership',
         'Community registration',
         'GToken staking requirement',
         'Slash mechanism',
+        'Uses new GTokenStaking with GToken v2.0.0',
       ],
     } as ContractVersion,
 
@@ -69,7 +84,7 @@ export const SEPOLIA_V2_VERSIONS = {
       version: '2.0.0',
       versionCode: 20000,
       deployedAt: '2025-11-01',
-      address: '0x7b0bb7D5a5bf7A5839A6e6B53bDD639865507A69',
+      address: '0x60Bd54645b0fDabA1114B701Df6f33C4ecE87fEa',
       features: [
         'VERSION interface',
         'User-level slash tracking',
@@ -77,6 +92,22 @@ export const SEPOLIA_V2_VERSIONS = {
         'Lock mechanism',
         'Percentage-based exit fee',
         'Multiple locker support',
+        'Uses new GToken v2.0.0',
+      ],
+    } as ContractVersion,
+
+    paymasterFactory: {
+      name: 'PaymasterFactory',
+      version: '1.0.0',
+      versionCode: 10000,
+      deployedAt: '2025-11-01',
+      address: '0x65Cf6C4ab3d40f3C919b6F3CADC09Efb72817920',
+      features: [
+        'EIP-1167 Minimal Proxy',
+        'Version management',
+        'Permissionless Paymaster deployment',
+        'Operator tracking',
+        'Gas-efficient (~100k gas per deployment)',
       ],
     } as ContractVersion,
   },
@@ -90,7 +121,7 @@ export const SEPOLIA_V2_VERSIONS = {
       version: '2.0.0',
       versionCode: 20000,
       deployedAt: '2025-11-01',
-      address: '0x787409E0510edc750d6cAd58792D01B9e3f52714',
+      address: '0x9dD72cB42427fC9F7Bf0c949DB7def51ef29D6Bd',
       features: [
         'VERSION interface',
         'Unified architecture',
@@ -105,7 +136,7 @@ export const SEPOLIA_V2_VERSIONS = {
       version: '2.4.0',
       versionCode: 20400,
       deployedAt: '2025-11-01',
-      address: '0x65Cf6C4ab3d40f3C919b6F3CADC09Efb72817920',
+      address: '0x73E635Fc9eD362b7061495372B6eDFF511D9E18F',
       features: [
         'VERSION interface',
         'NFT architecture refactor',
@@ -118,21 +149,34 @@ export const SEPOLIA_V2_VERSIONS = {
   },
 
   // ========================================
-  // Factory System
+  // Test Tokens (For Development & Testing)
   // ========================================
-  factories: {
-    paymasterFactory: {
-      name: 'PaymasterFactory',
-      version: '1.0.0',
-      versionCode: 10000,
+  testTokens: {
+    aPNTs: {
+      name: 'aPNTs',
+      version: '2.0.0',
+      versionCode: 20000,
       deployedAt: '2025-11-01',
-      address: '0xA32bcb29295Dbc19c92cFC1B0701A7A0e12D26B5',
+      address: '0xBD0710596010a157B88cd141d797E8Ad4bb2306b',
       features: [
-        'EIP-1167 Minimal Proxy',
-        'Version management',
-        'Permissionless Paymaster deployment',
-        'Operator tracking',
-        'Gas-efficient (~100k gas per deployment)',
+        'VERSION interface',
+        'AAStar community gas token',
+        'Test token for development',
+        'Auto-approved spenders',
+      ],
+    } as ContractVersion,
+
+    bPNTs: {
+      name: 'bPNTs',
+      version: '2.0.0',
+      versionCode: 20000,
+      deployedAt: '2025-11-01',
+      address: '0xF223660d24c436B5BfadFEF68B5051bf45E7C995',
+      features: [
+        'VERSION interface',
+        'BuilderDAO community gas token',
+        'Test token for development',
+        'Auto-approved spenders',
       ],
     } as ContractVersion,
   },
@@ -146,7 +190,7 @@ export const SEPOLIA_V2_VERSIONS = {
       version: '2.0.0',
       versionCode: 20000,
       deployedAt: '2025-11-01',
-      address: '0x95B20d8FdF173a1190ff71e41024991B2c5e58eF',
+      address: '0x937CdD172fb0674Db688149093356F6dA95498FD',
       features: [
         'VERSION interface',
         'Distributed validator technology',
@@ -160,7 +204,7 @@ export const SEPOLIA_V2_VERSIONS = {
       version: '2.0.0',
       versionCode: 20000,
       deployedAt: '2025-11-01',
-      address: '0x22560129Ba328F6895805CC0Fe884E8c84F5FCD8',
+      address: '0x3Cf0587912c692aa0f5FEEEDC52959ABEEEFaEc6',
       features: [
         'VERSION interface',
         'BLS signature aggregation',
@@ -188,20 +232,23 @@ export function getAllV2Contracts(): ContractVersion[] {
   const contracts: ContractVersion[] = [];
 
   // Core system
+  contracts.push(SEPOLIA_V2_VERSIONS.core.gToken);
   contracts.push(SEPOLIA_V2_VERSIONS.core.superPaymasterV2);
   contracts.push(SEPOLIA_V2_VERSIONS.core.registry);
   contracts.push(SEPOLIA_V2_VERSIONS.core.gTokenStaking);
+  contracts.push(SEPOLIA_V2_VERSIONS.core.paymasterFactory);
 
   // Token system
   contracts.push(SEPOLIA_V2_VERSIONS.tokens.xPNTsFactory);
   contracts.push(SEPOLIA_V2_VERSIONS.tokens.mySBT);
 
+  // Test tokens
+  contracts.push(SEPOLIA_V2_VERSIONS.testTokens.aPNTs);
+  contracts.push(SEPOLIA_V2_VERSIONS.testTokens.bPNTs);
+
   // Monitoring system
   contracts.push(SEPOLIA_V2_VERSIONS.monitoring.dvtValidator);
   contracts.push(SEPOLIA_V2_VERSIONS.monitoring.blsAggregator);
-
-  // Factory system
-  contracts.push(SEPOLIA_V2_VERSIONS.factories.paymasterFactory);
 
   return contracts;
 }
@@ -282,13 +329,13 @@ export function getV2ContractsByDate(date: string): ContractVersion[] {
  * V2 Contract Summary
  */
 export const V2_SUMMARY = {
-  totalContracts: 8,
+  totalContracts: 11,
   categories: {
-    core: 3,
-    tokens: 2,
-    monitoring: 2,
-    factories: 1, // PaymasterFactory deployed 2025-11-01
+    core: 5, // GToken, SuperPaymasterV2, Registry, GTokenStaking, PaymasterFactory
+    tokens: 2, // xPNTsFactory, MySBT
+    testTokens: 2, // aPNTs, bPNTs
+    monitoring: 2, // DVTValidator, BLSAggregator
   },
   latestDeployment: '2025-11-01',
-  allContractsHaveVersion: false, // PaymasterFactory v1.0.0 doesn't have VERSION interface
+  allContractsHaveVersion: true, // All V2 contracts now have VERSION interface
 } as const;
