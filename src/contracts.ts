@@ -1,8 +1,11 @@
 /**
  * AAstar Smart Contract Addresses
  *
- * Last Updated: 2025-10-30
+ * Last Updated: 2025-11-01
  * Source: SuperPaymaster/SUPERPAYMASTER_PRODUCT_OVERVIEW.md
+ *
+ * For detailed version information (VERSION, VERSION_CODE, features),
+ * see contract-versions.ts
  */
 
 /**
@@ -10,9 +13,10 @@
  */
 export type ContractCategory =
   | 'core'          // SuperPaymaster V2, Registry, GToken, GTokenStaking
-  | 'tokens'        // xPNTs, MySBT
+  | 'tokens'        // xPNTs, MySBT, aPNTs
   | 'testTokens'    // Mock tokens for testing (USDT, etc.)
-  | 'paymaster'     // PaymasterV4 (AOA mode)
+  | 'factories'     // PaymasterFactory
+  | 'paymaster'     // PaymasterV4_1 (AOA mode)
   | 'monitoring'    // DVT, BLS
   | 'official';     // EntryPoint
 
@@ -24,28 +28,31 @@ export const SEPOLIA_CONTRACTS = {
   // Core System (AOA+ Mode)
   // ========================================
   core: {
-    /** SuperPaymaster V2 - Shared paymaster for AOA+ mode (deployed: 2025-10-25) */
-    superPaymasterV2: '0x50c4Daf685170aa29513BA6dd89B8417b5b0FE4a',
+    /** SuperPaymaster V2 - Shared paymaster for AOA+ mode (deployed: 2025-11-01) */
+    superPaymasterV2: '0xB97A20aca3D6770Deca299a1aD9DAFb12d1e5eCf',
 
-    /** Registry v2.1.3 - Community registration with transferCommunityOwnership (deployed: 2025-10-30) */
-    registry: '0xd8f50dcF723Fb6d0Ec555691c3a19E446a3bb765',
+    /** Registry v2.1.3 - Community registration with transferCommunityOwnership (deployed: 2025-11-01) */
+    registry: '0x4572cEEA2B9f7d1f202c533474DeaaCe3E38b1dB',
 
     /** GToken - Governance token (sGT) (deployed: 2025-10-24) */
     gToken: '0x868F843723a98c6EECC4BF0aF3352C53d5004147',
 
-    /** GTokenStaking v2 - User-level slash + 1:1 shares (deployed: 2025-10-31) */
-    gTokenStaking: '0xDAD0EC96335f88A5A38aAd838daD4FE541744C2a',
+    /** GTokenStaking v2.0.0 - User-level slash + 1:1 shares (deployed: 2025-11-01) */
+    gTokenStaking: '0x7b0bb7D5a5bf7A5839A6e6B53bDD639865507A69',
   },
 
   // ========================================
   // Token System
   // ========================================
   tokens: {
-    /** xPNTsFactory - Unified architecture gas token factory (deployed: 2025-10-30) */
-    xPNTsFactory: '0xC2AFEA0F736403E7e61D3F7C7c6b4E5E63B5cab6',
+    /** xPNTsFactory v2.0.0 - Unified architecture gas token factory (deployed: 2025-11-01) */
+    xPNTsFactory: '0x787409E0510edc750d6cAd58792D01B9e3f52714',
 
-    /** MySBT v2.3.3 - White-label SBT with exit mechanism (deployed: 2025-10-30, burnSBT function) */
-    mySBT: '0x3cE0AB2a85Dc4b2B1976AA924CF8047F7afA9324',
+    /** MySBT v2.4.0 - White-label SBT with NFT refactor (deployed: 2025-11-01) */
+    mySBT: '0x65Cf6C4ab3d40f3C919b6F3CADC09Efb72817920',
+
+    /** aPNTs (xPNTsToken) - AAStar community gas token (deployed: 2025-10-30) */
+    aPNTs: '0xD11527ae56B6543a679e50408BE4aeE0f418ef9f',
   },
 
   // ========================================
@@ -57,22 +64,30 @@ export const SEPOLIA_CONTRACTS = {
   },
 
   // ========================================
-  // Paymaster V4 (AOA Mode)
+  // Factory System
+  // ========================================
+  factories: {
+    /** PaymasterFactory v1.0.0 - Permissionless Paymaster deployment using EIP-1167 (deployed: 2025-11-01) */
+    paymasterFactory: '0xA32bcb29295Dbc19c92cFC1B0701A7A0e12D26B5',
+  },
+
+  // ========================================
+  // Paymaster V4_1 (AOA Mode - Independent Paymaster)
   // ========================================
   paymaster: {
     /** PaymasterV4_1 - Independent paymaster for AOA mode (deployed: 2025-10-15) */
-    paymasterV4: '0x4D6A367aA183903968833Ec4AE361CFc8dDDBA38',
+    paymasterV4_1: '0x4D6A367aA183903968833Ec4AE361CFc8dDDBA38',
   },
 
   // ========================================
   // DVT/BLS Monitoring System
   // ========================================
   monitoring: {
-    /** DVTValidator - Distributed validator management (deployed: 2025-10-25) */
-    dvtValidator: '0x8E03495A45291084A73Cee65B986f34565321fb1',
+    /** DVTValidator v2.0.0 - Distributed validator management (deployed: 2025-11-01) */
+    dvtValidator: '0x95B20d8FdF173a1190ff71e41024991B2c5e58eF',
 
-    /** BLSAggregator - BLS signature aggregation (deployed: 2025-10-25) */
-    blsAggregator: '0xA7df6789218C5a270D6DF033979698CAB7D7b728',
+    /** BLSAggregator v2.0.0 - BLS signature aggregation (deployed: 2025-11-01) */
+    blsAggregator: '0x22560129Ba328F6895805CC0Fe884E8c84F5FCD8',
   },
 
   // ========================================
@@ -208,18 +223,18 @@ export function getTestTokenContracts(network: ContractNetwork) {
 }
 
 /**
- * Get PaymasterV4 address (AOA mode)
+ * Get PaymasterV4_1 address (AOA mode)
  *
  * @param network - Network name
- * @returns PaymasterV4 address
+ * @returns PaymasterV4_1 address
  *
  * @example
  * ```ts
- * const paymaster = getPaymasterV4('sepolia');
+ * const paymaster = getPaymasterV4_1('sepolia');
  * ```
  */
-export function getPaymasterV4(network: ContractNetwork): string {
-  return getContracts(network).paymaster.paymasterV4;
+export function getPaymasterV4_1(network: ContractNetwork): string {
+  return getContracts(network).paymaster.paymasterV4_1;
 }
 
 /**
@@ -289,25 +304,31 @@ export function getContractNetworks(): ContractNetwork[] {
  */
 export const CONTRACT_METADATA = {
   sepolia: {
-    lastUpdated: '2025-10-30',
+    lastUpdated: '2025-11-01',
     networkId: 11155111,
     deploymentDates: {
       // Core System
-      superPaymasterV2: '2025-10-25',
-      registry: '2025-10-30',  // v2.1.3 with transferCommunityOwnership
+      superPaymasterV2: '2025-11-01',  // v2.0.0 with VERSION interface
+      registry: '2025-11-01',          // v2.1.3 with VERSION interface
       gToken: '2025-10-24',
-      gTokenStaking: '2025-10-31',  // v2 with user-level slash + 1:1 shares model
+      gTokenStaking: '2025-11-01',     // v2.0.0 with VERSION interface
 
       // Tokens
-      xPNTsFactory: '2025-10-30',
-      mySBT: '2025-10-30',  // v2.3.3 with burnSBT exit mechanism
+      xPNTsFactory: '2025-11-01',      // v2.0.0 with VERSION interface
+      mySBT: '2025-11-01',             // v2.4.0 with VERSION interface + NFT refactor
 
       // Paymaster
-      paymasterV4: '2025-10-15',
+      paymasterV4_1: '2025-10-15',
+
+      // Tokens
+      aPNTs: '2025-10-30',
+
+      // Factories
+      paymasterFactory: '2025-11-01',      // v1.0.0
 
       // Monitoring
-      dvtValidator: '2025-10-25',
-      blsAggregator: '2025-10-25',
+      dvtValidator: '2025-11-01',      // v2.0.0 with VERSION interface
+      blsAggregator: '2025-11-01',     // v2.0.0 with VERSION interface
     },
   },
 } as const;
