@@ -65,12 +65,13 @@ export const SEPOLIA_V2_VERSIONS = {
 
     registry: {
       name: 'Registry',
-      version: '2.1.3',
-      versionCode: 20103,
-      deployedAt: '2025-11-01',
-      address: '0xb6286F53d8ff25eF99e6a43b2907B8e6BD0f019A',
+      version: '2.1.4',
+      versionCode: 20104,
+      deployedAt: '2025-11-02',
+      address: '0xf384c592D5258c91805128291c5D4c069DD30CA6',
       features: [
         'VERSION interface',
+        'allowPermissionlessMint defaults to true',
         'transferCommunityOwnership',
         'Community registration',
         'GToken staking requirement',

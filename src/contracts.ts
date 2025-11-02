@@ -31,8 +31,8 @@ export const SEPOLIA_CONTRACTS = {
     /** SuperPaymaster V2 - Shared paymaster for AOA+ mode (deployed: 2025-11-01) */
     superPaymasterV2: '0x95B20d8FdF173a1190ff71e41024991B2c5e58eF',
 
-    /** Registry v2.1.3 - Community registration with new GTokenStaking (deployed: 2025-11-01) */
-    registry: '0xb6286F53d8ff25eF99e6a43b2907B8e6BD0f019A',
+    /** Registry v2.1.4 - Community registration with allowPermissionlessMint default true (deployed: 2025-11-02) */
+    registry: '0xf384c592D5258c91805128291c5D4c069DD30CA6',
 
     /** GToken v2.0.0 - Governance token with VERSION interface (deployed: 2025-11-01) */
     gToken: '0x99cCb70646Be7A5aeE7aF98cE853a1EA1A676DCc',
@@ -328,13 +328,13 @@ export function getContractNetworks(): ContractNetwork[] {
  */
 export const CONTRACT_METADATA = {
   sepolia: {
-    lastUpdated: '2025-11-01',
+    lastUpdated: '2025-11-02',
     networkId: 11155111,
     deploymentDates: {
       // Core System
       gToken: '2025-11-01',            // v2.0.0 with VERSION interface
       superPaymasterV2: '2025-11-01',  // v2.0.0 with VERSION interface
-      registry: '2025-11-01',          // v2.1.3 with VERSION interface
+      registry: '2025-11-02',          // v2.1.4 with allowPermissionlessMint default true
       gTokenStaking: '2025-11-01',     // v2.0.0 with VERSION interface
 
       // Tokens
