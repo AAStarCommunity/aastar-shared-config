@@ -26,12 +26,16 @@ fi
 get_onchain_version() {
     local address=$1
     local version=$(cast call "$address" "VERSION()(string)" --rpc-url "$SEPOLIA_RPC" 2>/dev/null || echo "ERROR")
+    # Remove quotes from version string
+    version=$(echo "$version" | tr -d '"')
     echo "$version"
 }
 
 get_onchain_version_code() {
     local address=$1
     local version_code=$(cast call "$address" "VERSION_CODE()(uint256)" --rpc-url "$SEPOLIA_RPC" 2>/dev/null || echo "ERROR")
+    # Extract just the number (before any brackets or spaces)
+    version_code=$(echo "$version_code" | awk '{print $1}')
     echo "$version_code"
 }
 
