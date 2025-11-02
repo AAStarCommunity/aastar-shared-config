@@ -1,7 +1,7 @@
 /**
  * AAstar Smart Contract Addresses
  *
- * Last Updated: 2025-11-01
+ * Last Updated: 2025-11-02
  * Source: SuperPaymaster/SUPERPAYMASTER_PRODUCT_OVERVIEW.md
  *
  * For detailed version information (VERSION, VERSION_CODE, features),
@@ -75,6 +75,9 @@ export const SEPOLIA_CONTRACTS = {
   paymaster: {
     /** PaymasterV4_1 - Independent paymaster for AOA mode (deployed: 2025-10-15) */
     paymasterV4_1: '0x4D6A367aA183903968833Ec4AE361CFc8dDDBA38',
+
+    /** PaymasterV4_1i Implementation - Factory deployment version (deployed: 2025-11-02) */
+    paymasterV4_1iImplementation: '0x3E1C6a741f4b3f8bE24f324342539982324a6f8a',
   },
 
   // ========================================
