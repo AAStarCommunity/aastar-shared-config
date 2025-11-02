@@ -374,6 +374,13 @@ npm publish
 
 ## Version History
 
+- **v0.2.12** (2025-11-02)
+  - Fixed on-chain version verification script
+  - Strip quotes from VERSION() string output
+  - Extract numeric value from VERSION_CODE() output
+  - Add run-verify.sh wrapper to load private RPC
+  - All 11 contracts now verify successfully ✅
+
 - **v0.2.11** (2025-11-02)
   - Updated Registry to v2.1.4 with allowPermissionlessMint default true
   - Added 5 new ABIs (MySBT, xPNTsFactory, PaymasterFactory, DVTValidator, BLSAggregator)
