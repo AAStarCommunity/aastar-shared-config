@@ -15,10 +15,12 @@ yarn add @aastar/shared-config
 ## Features
 
 - **Type-safe contract addresses** for all AAstar ecosystem contracts
+- **Contract version tracking** with VERSION interface support
 - **Network configurations** with RPC URLs and block explorers
 - **Helper functions** for common queries
-- **Contract ABIs** for direct integration
+- **Contract ABIs** for direct integration (13 ABIs included)
 - **Deployment metadata** tracking
+- **Verification scripts** for contract version validation
 - **Multi-chain support** (Sepolia testnet, with mainnet support coming soon)
 
 ## Quick Start
@@ -28,76 +30,150 @@ import {
   getContracts,
   getSuperPaymasterV2,
   getNetworks,
-  getTxUrl
+  getTxUrl,
+  getV2ContractByName
 } from '@aastar/shared-config';
 
 // Get all contracts for Sepolia
 const contracts = getContracts('sepolia');
 console.log(contracts.core.superPaymasterV2);
-// Output: '0x50c4Daf685170aa29513BA6dd89B8417b5b0FE4a'
+// Output: '0x95B20d8FdF173a1190ff71e41024991B2c5e58eF'
 
-// Get specific contract address
-const superPaymaster = getSuperPaymasterV2('sepolia');
+// Get contract version info
+const registry = getV2ContractByName('Registry');
+console.log(registry.version); // '2.1.4'
+console.log(registry.versionCode); // 20104
 
 // Generate transaction URL
 const txUrl = getTxUrl('sepolia', '0x123...');
 // Output: 'https://sepolia.etherscan.io/tx/0x123...'
 ```
 
-## Contract Addresses
+## Contract Addresses (Sepolia Testnet)
 
-### Core System Contracts (AOA+ Mode)
+### Core System Contracts (V2 with VERSION Interface)
+
+| Contract | Version | Address | Deployed | Features |
+|----------|---------|---------|----------|----------|
+| **Registry** | 2.1.4 | `0xf384c592D5258c91805128291c5D4c069DD30CA6` | 2025-11-02 | allowPermissionlessMint default true |
+| **GToken** | 2.0.0 | `0x99cCb70646Be7A5aeE7aF98cE853a1EA1A676DCc` | 2025-11-01 | Governance token |
+| **GTokenStaking** | 2.0.0 | `0x60Bd54645b0fDabA1114B701Df6f33C4ecE87fEa` | 2025-11-01 | 1:1 shares, user-level slash |
+| **SuperPaymasterV2** | 2.0.0 | `0x95B20d8FdF173a1190ff71e41024991B2c5e58eF` | 2025-11-01 | Unified architecture |
+| **PaymasterFactory** | 1.0.0 | `0x65Cf6C4ab3d40f3C919b6F3CADC09Efb72817920` | 2025-11-01 | EIP-1167 proxy factory |
+
+### Token System
+
+| Contract | Version | Address | Deployed | Features |
+|----------|---------|---------|----------|----------|
+| **xPNTsFactory** | 2.0.0 | `0x9dD72cB42427fC9F7Bf0c949DB7def51ef29D6Bd` | 2025-11-01 | Gas token factory |
+| **MySBT** | 2.4.0 | `0x73E635Fc9eD362b7061495372B6eDFF511D9E18F` | 2025-11-01 | NFT architecture refactor |
+| **aPNTs** (test) | 2.0.0 | `0xBD0710596010a157B88cd141d797E8Ad4bb2306b` | 2025-11-01 | AAStar community token |
+| **bPNTs** (test) | 2.0.0 | `0xF223660d24c436B5BfadFEF68B5051bf45E7C995` | 2025-11-01 | BuilderDAO community token |
+
+### Monitoring System
+
+| Contract | Version | Address | Deployed | Features |
+|----------|---------|---------|----------|----------|
+| **DVTValidator** | 2.0.0 | `0x937CdD172fb0674Db688149093356F6dA95498FD` | 2025-11-01 | Distributed validator |
+| **BLSAggregator** | 2.0.0 | `0x3Cf0587912c692aa0f5FEEEDC52959ABEEEFaEc6` | 2025-11-01 | BLS signature aggregation |
+
+### Official Dependencies
+
+| Contract | Address | Network |
+|----------|---------|---------|
+| **EntryPoint v0.7** | `0x0000000071727De22E5E9d8BAf0edAc6f37da032` | Cross-chain |
+
+## Contract Version Interface
+
+All V2 contracts implement the VERSION interface:
+
+```solidity
+interface IVersioned {
+    function VERSION() external view returns (string memory);
+    function VERSION_CODE() external view returns (uint256);
+}
+```
+
+You can query contract versions on-chain:
+
+```typescript
+import { ethers } from 'ethers';
+import { RegistryABI } from '@aastar/shared-config';
+
+const registry = new ethers.Contract(registryAddress, RegistryABI, provider);
+const version = await registry.VERSION(); // "2.1.4"
+const versionCode = await registry.VERSION_CODE(); // 20104
+```
+
+## Using Contract Addresses
 
 ```typescript
 import { getCoreContracts } from '@aastar/shared-config';
 
 const core = getCoreContracts('sepolia');
 
-// SuperPaymaster V2 - Shared paymaster for AOA+ mode
-const superPaymasterV2 = core.superPaymasterV2;
-
-// Registry v2.1 - Community registration with node types
+// Registry v2.1.4 - Community registration
 const registry = core.registry;
 
-// GToken - Governance token (sGT)
+// GToken - Governance token
 const gToken = core.gToken;
 
-// GTokenStaking - Stake, lock, slash management
+// GTokenStaking - Stake management
 const gTokenStaking = core.gTokenStaking;
+
+// SuperPaymaster V2 - Shared paymaster
+const superPaymasterV2 = core.superPaymasterV2;
+
+// PaymasterFactory - Permissionless deployment
+const paymasterFactory = core.paymasterFactory;
 ```
 
-### Token System
+## Using ABIs
+
+This package includes 13 contract ABIs. Import them directly from the JSON files:
 
 ```typescript
-import { getTokenContracts } from '@aastar/shared-config';
+import { ethers } from 'ethers';
+import { getSuperPaymasterV2 } from '@aastar/shared-config';
 
-const tokens = getTokenContracts('sepolia');
+// Import ABIs
+import RegistryABI from '@aastar/shared-config/src/abis/Registry.json';
+import GTokenABI from '@aastar/shared-config/src/abis/GToken.json';
+import SuperPaymasterV2ABI from '@aastar/shared-config/src/abis/SuperPaymasterV2.json';
 
-// xPNTsFactory - Unified architecture gas token factory
-const factory = tokens.xPNTsFactory;
+// Create contract instance
+const registryAddress = getContracts('sepolia').core.registry;
+const registry = new ethers.Contract(registryAddress, RegistryABI, provider);
 
-// MySBT v2.3 - White-label SBT for community identity
-const mySBT = tokens.mySBT;
+// Call contract methods
+const version = await registry.VERSION();
+const community = await registry.communities(communityAddress);
 ```
 
-### Paymaster V4 (AOA Mode)
+### Available ABIs
 
-```typescript
-import { getPaymasterV4 } from '@aastar/shared-config';
+**Core System (5 ABIs)**
+- `Registry.json` - Registry v2.1.4 (11-field CommunityProfile)
+- `GToken.json` - Governance token
+- `GTokenStaking.json` - Staking with user-level slash
+- `SuperPaymasterV2.json` - Unified architecture paymaster
+- `PaymasterFactory.json` - EIP-1167 proxy factory
 
-// PaymasterV4_1 - Independent paymaster for AOA mode
-const paymasterV4 = getPaymasterV4('sepolia');
-```
+**Token System (3 ABIs)**
+- `xPNTsToken.json` - Gas token implementation (for aPNTs, bPNTs)
+- `xPNTsFactory.json` - Gas token factory
+- `MySBT.json` - Soulbound token v2.4.0
 
-### Official Dependencies
+**Monitoring System (2 ABIs)**
+- `DVTValidator.json` - Distributed validator
+- `BLSAggregator.json` - BLS signature aggregation
 
-```typescript
-import { getEntryPoint } from '@aastar/shared-config';
+**Legacy/Third-party (3 ABIs)**
+- `PaymasterV4.json` - Legacy paymaster
+- `SimpleAccount.json` - ERC-4337 account
+- `SimpleAccountFactory.json` - ERC-4337 factory
 
-// EntryPoint v0.7 - ERC-4337 official EntryPoint
-const entryPoint = getEntryPoint('sepolia');
-// Cross-chain address: 0x0000000071727De22E5E9d8BAf0edAc6f37da032
-```
+All V2 ABIs include VERSION() and VERSION_CODE() functions for on-chain version querying.
 
 ## Network Utilities
 
@@ -133,77 +209,92 @@ const addressUrl = getAddressUrl('sepolia', '0xdef456...');
 // https://sepolia.etherscan.io/address/0xdef456...
 ```
 
-## Contract Categories
+## Contract Version Tracking
 
 ```typescript
-import { getContract, type ContractCategory } from '@aastar/shared-config';
+import {
+  getAllV2Contracts,
+  getV2ContractByName,
+  getV2ContractByAddress,
+  isV2Contract
+} from '@aastar/shared-config';
 
-// Available categories:
-// - 'core': SuperPaymaster V2, Registry, GToken, GTokenStaking
-// - 'tokens': xPNTs, MySBT
-// - 'paymaster': PaymasterV4 (AOA mode)
-// - 'monitoring': DVT, BLS
-// - 'official': EntryPoint
+// Get all V2 contracts
+const allContracts = getAllV2Contracts();
+console.log(`Total contracts: ${allContracts.length}`);
 
-const address = getContract('sepolia', 'core', 'registry');
-```
+// Get specific contract by name
+const registry = getV2ContractByName('Registry');
+console.log(registry.version); // '2.1.4'
+console.log(registry.versionCode); // 20104
+console.log(registry.features); // Array of features
 
-## Deployment Metadata
+// Get contract by address
+const contract = getV2ContractByAddress('0xf384c592D5258c91805128291c5D4c069DD30CA6');
+console.log(contract?.name); // 'Registry'
 
-```typescript
-import { getDeploymentDate, CONTRACT_METADATA } from '@aastar/shared-config';
-
-// Get deployment date for a specific contract
-const deployDate = getDeploymentDate('sepolia', 'superPaymasterV2');
-console.log(deployDate); // '2025-10-25'
-
-// Access all metadata
-const metadata = CONTRACT_METADATA.sepolia;
-console.log(metadata.lastUpdated); // '2025-10-30'
-```
-
-## Network Validation
-
-```typescript
-import { isNetworkSupported, getSupportedNetworks } from '@aastar/shared-config';
-
-// Check if network is supported
-if (isNetworkSupported('sepolia')) {
-  const contracts = getContracts('sepolia');
+// Check if address is a V2 contract
+if (isV2Contract('0xf384...')) {
+  console.log('This is a V2 contract with VERSION interface');
 }
-
-// Get all supported networks
-const networks = getSupportedNetworks();
-console.log(networks); // ['sepolia']
 ```
 
-## Using ABIs
+## Development Scripts
 
-Contract ABIs are included in the package but not exported from the main entry point to avoid TypeScript declaration issues. Import them directly from the JSON files:
+This package includes verification and maintenance scripts:
+
+### Sync ABIs from SuperPaymaster
+
+```bash
+./sync-abis.sh
+```
+
+Syncs the latest compiled ABIs from the SuperPaymaster repository.
+
+### Generate Comparison Table
+
+```bash
+./generate-comparison-table.sh
+```
+
+Generates a table comparing contract versions, ABIs, and addresses.
+
+### Verify On-Chain Versions
+
+```bash
+./verify-onchain-versions.sh
+```
+
+Queries on-chain VERSION() and VERSION_CODE() for all contracts and compares with config.
+
+### Comprehensive Verification
+
+```bash
+./verify-all.sh
+```
+
+Performs comprehensive verification:
+- On-chain version vs config
+- ABI version interface
+- Source code version consistency
+
+## TypeScript Support
+
+Full type definitions included:
 
 ```typescript
-import { ethers } from 'ethers';
-import { getPaymasterV4 } from '@aastar/shared-config';
-// Import ABI from JSON file
-import PaymasterV4ABI from '@aastar/shared-config/src/abis/PaymasterV4.json';
+import type {
+  SupportedNetwork,
+  NetworkContracts,
+  ContractCategory,
+  ContractVersion
+} from '@aastar/shared-config';
 
-// Create contract instance
-const paymasterAddress = getPaymasterV4('sepolia');
-const paymaster = new ethers.Contract(
-  paymasterAddress,
-  PaymasterV4ABI,
-  provider
-);
-
-// Call contract methods
-const isSupported = await paymaster.isSupportedSBT(sbtAddress);
+function deployContract(network: SupportedNetwork) {
+  const contracts: NetworkContracts = getContracts(network);
+  // Full type safety
+}
 ```
-
-Available ABIs:
-- `@aastar/shared-config/src/abis/PaymasterV4.json`
-- `@aastar/shared-config/src/abis/GasTokenV2.json`
-- `@aastar/shared-config/src/abis/SimpleAccount.json`
-- `@aastar/shared-config/src/abis/SimpleAccountFactory.json`
 
 ## Constants
 
@@ -227,118 +318,72 @@ const liteNodeStake = NODE_STAKE_AMOUNTS.LITE; // 30 sGT
 const superNodeStake = NODE_STAKE_AMOUNTS.SUPER; // 300 sGT
 ```
 
-## Branding
-
-```typescript
-import { BRANDING, LINKS } from '@aastar/shared-config';
-
-// Use AAstar branding
-const logo = BRANDING.logo;
-const primaryColor = BRANDING.colors.primary;
-
-// Access official links
-const website = LINKS.main; // https://aastar.io
-const github = LINKS.github; // https://github.com/AAStarCommunity
-```
-
-## TypeScript Support
-
-This package is written in TypeScript and provides full type definitions:
-
-```typescript
-import type {
-  SupportedNetwork,
-  NetworkContracts,
-  ContractCategory
-} from '@aastar/shared-config';
-
-function deployContract(network: SupportedNetwork) {
-  const contracts: NetworkContracts = getContracts(network);
-  // Full type safety
-}
-```
-
-## Complete Example: Sending a Transaction
+## Complete Example: Registry Integration
 
 ```typescript
 import { ethers } from 'ethers';
-import {
-  getSuperPaymasterV2,
-  getEntryPoint,
-  getRpcUrl,
-  getTxUrl,
-  SimpleAccountABI
-} from '@aastar/shared-config';
+import { getContracts, getRpcUrl } from '@aastar/shared-config';
+import RegistryABI from '@aastar/shared-config/src/abis/Registry.json';
+import GTokenStakingABI from '@aastar/shared-config/src/abis/GTokenStaking.json';
 
-async function sendGaslessTransaction() {
-  // Get network configuration
+async function registerCommunity() {
   const network = 'sepolia';
-  const rpcUrl = getRpcUrl(network);
-  const provider = new ethers.JsonRpcProvider(rpcUrl);
+  const provider = new ethers.JsonRpcProvider(getRpcUrl(network));
+  const contracts = getContracts(network).core;
 
-  // Get contract addresses
-  const superPaymaster = getSuperPaymasterV2(network);
-  const entryPoint = getEntryPoint(network);
+  // Registry v2.1.4 uses 11-field CommunityProfile
+  const registry = new ethers.Contract(contracts.registry, RegistryABI, signer);
+  const staking = new ethers.Contract(contracts.gTokenStaking, GTokenStakingABI, signer);
 
-  // Create contract instance
-  const account = new ethers.Contract(
-    accountAddress,
-    SimpleAccountABI,
-    wallet
-  );
+  // Approve stGToken for Registry
+  const stakeAmount = ethers.parseEther('50'); // 50 GToken
+  await staking.approve(contracts.registry, stakeAmount);
 
-  // Build UserOperation with paymaster
-  const userOp = {
-    sender: accountAddress,
-    // ... other fields
-    paymaster: superPaymaster,
+  // Register community (11 fields)
+  const profile = {
+    name: 'My Community',
+    ensName: 'mycommunity.eth',
+    xPNTsToken: ethers.ZeroAddress,
+    supportedSBTs: [],
+    nodeType: 0, // PAYMASTER_AOA
+    paymasterAddress: ethers.ZeroAddress,
+    community: await signer.getAddress(),
+    registeredAt: 0,
+    lastUpdatedAt: 0,
+    isActive: true,
+    allowPermissionlessMint: true, // Default: true
   };
 
-  // Send transaction
-  const tx = await entryPoint.handleOps([userOp], beneficiary);
-  console.log('Transaction:', getTxUrl(network, tx.hash));
-
-  return tx;
+  const tx = await registry.registerCommunity(profile, stakeAmount);
+  console.log('Transaction:', tx.hash);
 }
 ```
 
-## Development
-
-### Building
+## Building
 
 ```bash
 pnpm build
 ```
 
-### Publishing
+## Publishing
 
 ```bash
 pnpm build
 npm publish
 ```
 
-## Multi-Chain Support (Coming Soon)
+## Version History
 
-```typescript
-// Future: Optimism support
-const optimismContracts = getContracts('optimism');
+- **v0.2.11** (2025-11-02)
+  - Updated Registry to v2.1.4 with allowPermissionlessMint default true
+  - Added 5 new ABIs (MySBT, xPNTsFactory, PaymasterFactory, DVTValidator, BLSAggregator)
+  - Total 13 ABIs with VERSION interface support
+  - Added verification scripts
+  - 100% ABI coverage for all V2 contracts
 
-// Future: Mainnet support
-const mainnetContracts = getContracts('mainnet');
-```
-
-## Contract Addresses (Sepolia Testnet)
-
-| Contract | Address | Deployed |
-|----------|---------|----------|
-| SuperPaymaster V2 | `0x50c4Daf685170aa29513BA6dd89B8417b5b0FE4a` | 2025-10-25 |
-| Registry v2.1 | `0x529912C52a934fA02441f9882F50acb9b73A3c5B` | 2025-10-27 |
-| GToken (sGT) | `0x868F843723a98c6EECC4BF0aF3352C53d5004147` | 2025-10-24 |
-| GTokenStaking | `0x92eD5b659Eec9D5135686C9369440D71e7958527` | 2025-10-24 |
-| xPNTsFactory | `0xC2AFEA0F736403E7e61D3F7C7c6b4E5E63B5cab6` | 2025-10-30 |
-| MySBT v2.3 | `0xc1085841307d85d4a8dC973321Df2dF7c01cE5C8` | 2025-10-28 |
-| PaymasterV4_1 | `0x4D6A367aA183903968833Ec4AE361CFc8dDDBA38` | 2025-10-15 |
-| EntryPoint v0.7 | `0x0000000071727De22E5E9d8BAf0edAc6f37da032` | Official |
+- **v0.2.x** (2025-11-01)
+  - V2 contract deployment with VERSION interface
+  - All core contracts updated to v2.0.0
 
 ## License
 
@@ -354,5 +399,7 @@ MIT
 ## Maintenance
 
 This package is maintained by the AAstar Community team. Contract addresses are updated whenever new contracts are deployed from the [SuperPaymaster repository](https://github.com/AAStarCommunity/SuperPaymaster).
+
+All V2 contracts implement the VERSION interface for on-chain version verification.
 
 For contract deployment updates, please open an issue or PR in the GitHub repository.
