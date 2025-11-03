@@ -88,7 +88,7 @@ print_verification_row "MySBT" "0x73E635Fc9eD362b7061495372B6eDFF511D9E18F" "2.4
 
 # Test Tokens (same ABI as xPNTsToken)
 print_verification_row "aPNTs" "0xBD0710596010a157B88cd141d797E8Ad4bb2306b" "2.0.0" "20000"
-print_verification_row "bPNTs" "0xF223660d24c436B5BfadFEF68B5051bf45E7C995" "2.0.0" "20000"
+print_verification_row "bPNTs" "0x70Da2c1B7Fcf471247Bc3B09f8927a4ab1751Ba3" "2.0.0" "20000"
 
 # Monitoring System
 print_verification_row "DVTValidator" "0x937CdD172fb0674Db688149093356F6dA95498FD" "2.0.0" "20000"
