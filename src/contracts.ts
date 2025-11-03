@@ -1,12 +1,22 @@
 /**
  * AAstar Smart Contract Addresses
  *
- * Last Updated: 2025-11-02
- * Source: SuperPaymaster/SUPERPAYMASTER_PRODUCT_OVERVIEW.md
+ * IMPORTANT: Contract addresses are defined in contract-addresses.ts
+ * This file imports and uses those addresses to maintain a single source of truth.
  *
  * For detailed version information (VERSION, VERSION_CODE, features),
  * see contract-versions.ts
  */
+
+import {
+  CORE_ADDRESSES,
+  TOKEN_ADDRESSES,
+  TEST_TOKEN_ADDRESSES,
+  PAYMASTER_ADDRESSES,
+  MONITORING_ADDRESSES,
+  OFFICIAL_ADDRESSES,
+  COMMUNITY_OWNERS,
+} from './contract-addresses';
 
 /**
  * Contract category types
@@ -27,77 +37,32 @@ export const SEPOLIA_CONTRACTS = {
   // ========================================
   // Core System (AOA+ Mode)
   // ========================================
-  core: {
-    /** SuperPaymaster V2 - Shared paymaster for AOA+ mode (deployed: 2025-11-01) */
-    superPaymasterV2: '0x95B20d8FdF173a1190ff71e41024991B2c5e58eF',
-
-    /** Registry v2.1.4 - Community registration with allowPermissionlessMint default true (deployed: 2025-11-02) */
-    registry: '0xf384c592D5258c91805128291c5D4c069DD30CA6',
-
-    /** GToken v2.0.0 - Governance token with VERSION interface (deployed: 2025-11-01) */
-    gToken: '0x99cCb70646Be7A5aeE7aF98cE853a1EA1A676DCc',
-
-    /** GTokenStaking v2.0.0 - User-level slash + 1:1 shares with new GToken (deployed: 2025-11-01) */
-    gTokenStaking: '0x60Bd54645b0fDabA1114B701Df6f33C4ecE87fEa',
-
-    /** PaymasterFactory v1.0.0 - Permissionless Paymaster deployment using EIP-1167 (deployed: 2025-11-01) */
-    paymasterFactory: '0x65Cf6C4ab3d40f3C919b6F3CADC09Efb72817920',
-  },
+  core: CORE_ADDRESSES,
 
   // ========================================
   // Token System
   // ========================================
-  tokens: {
-    /** xPNTsFactory v2.0.0 - Unified architecture gas token factory (deployed: 2025-11-01) */
-    xPNTsFactory: '0x9dD72cB42427fC9F7Bf0c949DB7def51ef29D6Bd',
-
-    /** MySBT v2.4.0 - White-label SBT with NFT refactor (deployed: 2025-11-01) */
-    mySBT: '0x73E635Fc9eD362b7061495372B6eDFF511D9E18F',
-  },
+  tokens: TOKEN_ADDRESSES,
 
   // ========================================
   // Test Tokens (For Development & Testing)
   // ========================================
-  testTokens: {
-    /** Mock USDT - Test token for payment testing (6 decimals) */
-    mockUSDT: '0x14EaC6C3D49AEDff3D59773A7d7bfb50182bCfDc',
-
-    /** aPNTs v2.0.0 - AAStar community gas token for testing (deployed: 2025-11-01) */
-    aPNTs: '0xBD0710596010a157B88cd141d797E8Ad4bb2306b',
-
-    /** bPNTs v2.0.0 - BreadCommunity gas token for testing (deployed: 2025-11-03) */
-    bPNTs: '0x70Da2c1B7Fcf471247Bc3B09f8927a4ab1751Ba3',
-  },
+  testTokens: TEST_TOKEN_ADDRESSES,
 
   // ========================================
   // Paymaster V4_1 (AOA Mode - Independent Paymaster)
   // ========================================
-  paymaster: {
-    /** PaymasterV4_1 - Independent paymaster for AOA mode (deployed: 2025-10-15) */
-    paymasterV4_1: '0x4D6A367aA183903968833Ec4AE361CFc8dDDBA38',
-
-    /** PaymasterV4_1i Implementation - Factory deployment version (deployed: 2025-11-02) */
-    paymasterV4_1iImplementation: '0x3E1C6a741f4b3f8bE24f324342539982324a6f8a',
-  },
+  paymaster: PAYMASTER_ADDRESSES,
 
   // ========================================
   // DVT/BLS Monitoring System
   // ========================================
-  monitoring: {
-    /** DVTValidator v2.0.0 - Distributed validator management (deployed: 2025-11-01) */
-    dvtValidator: '0x937CdD172fb0674Db688149093356F6dA95498FD',
-
-    /** BLSAggregator v2.0.0 - BLS signature aggregation (deployed: 2025-11-01) */
-    blsAggregator: '0x3Cf0587912c692aa0f5FEEEDC52959ABEEEFaEc6',
-  },
+  monitoring: MONITORING_ADDRESSES,
 
   // ========================================
   // Official Dependencies
   // ========================================
-  official: {
-    /** EntryPoint v0.7 - ERC-4337 official EntryPoint (cross-chain address) */
-    entryPoint: '0x0000000071727De22E5E9d8BAf0edAc6f37da032',
-  },
+  official: OFFICIAL_ADDRESSES,
 
   // ========================================
   // Test Communities (For Development & Testing)
@@ -105,8 +70,8 @@ export const SEPOLIA_CONTRACTS = {
   communities: {
     /** AAStar Community - Test community for development (registered: 2025-11-01) */
     aastar: {
-      owner: '0x411BD567E46C0781248dbB6a9211891C032885e5', // Deployer 1
-      gasToken: '0xBD0710596010a157B88cd141d797E8Ad4bb2306b', // aPNTs (test token)
+      owner: COMMUNITY_OWNERS.aastarOwner,
+      gasToken: TEST_TOKEN_ADDRESSES.aPNTs,
       ensName: 'aastar.eth',
       name: 'AAStar',
       stake: '50', // 50 GToken staked in Registry
@@ -114,8 +79,8 @@ export const SEPOLIA_CONTRACTS = {
 
     /** BreadCommunity - Test community for development (registered: 2025-11-03) */
     breadCommunity: {
-      owner: '0xe24b6f321B0140716a2b671ed0D983bb64E7DaFA', // OWNER2
-      gasToken: '0x70Da2c1B7Fcf471247Bc3B09f8927a4ab1751Ba3', // bPNTs (test token)
+      owner: COMMUNITY_OWNERS.breadCommunityOwner,
+      gasToken: TEST_TOKEN_ADDRESSES.bPNTs,
       ensName: 'bread.eth',
       name: 'BreadCommunity',
       stake: '50', // 50 GToken staked in Registry

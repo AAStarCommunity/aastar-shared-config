@@ -1,12 +1,22 @@
 /**
  * AAstar V2 Contract Versions
  *
+ * IMPORTANT: Contract addresses are defined in contract-addresses.ts
+ * This file imports and uses those addresses to maintain a single source of truth.
+ *
  * All V2 contracts implement the VERSION interface:
  * - VERSION: string (e.g., "2.0.0")
  * - VERSION_CODE: uint256 (e.g., 20000)
  *
  * Last Updated: 2025-11-01
  */
+
+import {
+  CORE_ADDRESSES,
+  TOKEN_ADDRESSES,
+  TEST_TOKEN_ADDRESSES,
+  MONITORING_ADDRESSES,
+} from './contract-addresses';
 
 /**
  * Contract version information
@@ -39,7 +49,7 @@ export const SEPOLIA_V2_VERSIONS = {
       version: '2.0.0',
       versionCode: 20000,
       deployedAt: '2025-11-01',
-      address: '0x99cCb70646Be7A5aeE7aF98cE853a1EA1A676DCc',
+      address: CORE_ADDRESSES.gToken,
       features: [
         'VERSION interface',
         'ERC20 governance token',
@@ -53,7 +63,7 @@ export const SEPOLIA_V2_VERSIONS = {
       version: '2.0.0',
       versionCode: 20000,
       deployedAt: '2025-11-01',
-      address: '0x95B20d8FdF173a1190ff71e41024991B2c5e58eF',
+      address: CORE_ADDRESSES.superPaymasterV2,
       features: [
         'VERSION interface',
         'Unified architecture',
@@ -68,7 +78,7 @@ export const SEPOLIA_V2_VERSIONS = {
       version: '2.1.4',
       versionCode: 20104,
       deployedAt: '2025-11-02',
-      address: '0xf384c592D5258c91805128291c5D4c069DD30CA6',
+      address: CORE_ADDRESSES.registry,
       features: [
         'VERSION interface',
         'allowPermissionlessMint defaults to true',
@@ -85,7 +95,7 @@ export const SEPOLIA_V2_VERSIONS = {
       version: '2.0.0',
       versionCode: 20000,
       deployedAt: '2025-11-01',
-      address: '0x60Bd54645b0fDabA1114B701Df6f33C4ecE87fEa',
+      address: CORE_ADDRESSES.gTokenStaking,
       features: [
         'VERSION interface',
         'User-level slash tracking',
@@ -102,7 +112,7 @@ export const SEPOLIA_V2_VERSIONS = {
       version: '1.0.0',
       versionCode: 10000,
       deployedAt: '2025-11-01',
-      address: '0x65Cf6C4ab3d40f3C919b6F3CADC09Efb72817920',
+      address: CORE_ADDRESSES.paymasterFactory,
       features: [
         'EIP-1167 Minimal Proxy',
         'Version management',
@@ -122,7 +132,7 @@ export const SEPOLIA_V2_VERSIONS = {
       version: '2.0.0',
       versionCode: 20000,
       deployedAt: '2025-11-01',
-      address: '0x9dD72cB42427fC9F7Bf0c949DB7def51ef29D6Bd',
+      address: TOKEN_ADDRESSES.xPNTsFactory,
       features: [
         'VERSION interface',
         'Unified architecture',
@@ -137,7 +147,7 @@ export const SEPOLIA_V2_VERSIONS = {
       version: '2.4.0',
       versionCode: 20400,
       deployedAt: '2025-11-01',
-      address: '0x73E635Fc9eD362b7061495372B6eDFF511D9E18F',
+      address: TOKEN_ADDRESSES.mySBT,
       features: [
         'VERSION interface',
         'NFT architecture refactor',
@@ -158,7 +168,7 @@ export const SEPOLIA_V2_VERSIONS = {
       version: '2.0.0',
       versionCode: 20000,
       deployedAt: '2025-11-01',
-      address: '0xBD0710596010a157B88cd141d797E8Ad4bb2306b',
+      address: TEST_TOKEN_ADDRESSES.aPNTs,
       features: [
         'VERSION interface',
         'AAStar community gas token',
@@ -172,7 +182,7 @@ export const SEPOLIA_V2_VERSIONS = {
       version: '2.0.0',
       versionCode: 20000,
       deployedAt: '2025-11-03',
-      address: '0x70Da2c1B7Fcf471247Bc3B09f8927a4ab1751Ba3',
+      address: TEST_TOKEN_ADDRESSES.bPNTs,
       features: [
         'VERSION interface',
         'BreadCommunity gas token',
@@ -191,7 +201,7 @@ export const SEPOLIA_V2_VERSIONS = {
       version: '2.0.0',
       versionCode: 20000,
       deployedAt: '2025-11-01',
-      address: '0x937CdD172fb0674Db688149093356F6dA95498FD',
+      address: MONITORING_ADDRESSES.dvtValidator,
       features: [
         'VERSION interface',
         'Distributed validator technology',
@@ -205,7 +215,7 @@ export const SEPOLIA_V2_VERSIONS = {
       version: '2.0.0',
       versionCode: 20000,
       deployedAt: '2025-11-01',
-      address: '0x3Cf0587912c692aa0f5FEEEDC52959ABEEEFaEc6',
+      address: MONITORING_ADDRESSES.blsAggregator,
       features: [
         'VERSION interface',
         'BLS signature aggregation',

@@ -5,6 +5,7 @@
  */
 
 export * from './branding';
+export * from './contract-addresses'; // Single source of truth for all contract addresses
 export * from './contracts';
 export * from './contract-versions';
 export * from './networks';
