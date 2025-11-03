@@ -1,6 +1,6 @@
 {
   "name": "@aastar/shared-config",
-  "version": "0.2.15",
+  "version": "0.2.16",
   "description": "Shared configuration for AAStar Community projects",
   "type": "module",
   "main": "./dist/index.cjs",
@@ -20,6 +20,7 @@
   "scripts": {
     "build": "tsup src/index.ts --format cjs,esm --dts",
     "dev": "tsup src/index.ts --format cjs,esm --dts --watch",
+    "verify": "node verify-onchain-versions.mjs",
     "prepublishOnly": "pnpm build"
   },
   "keywords": [
