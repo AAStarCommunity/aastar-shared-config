@@ -9,13 +9,13 @@ import { getAllV2Contracts } from './dist/index.js';
 
 const SEPOLIA_RPC = process.env.SEPOLIA_RPC_URL || 'https://rpc.sepolia.org';
 
-// Colors
+// Colors (using hex escapes for strict mode compatibility)
 const colors = {
-  green: '\033[0;32m',
-  red: '\033[0;31m',
-  yellow: '\033[1;33m',
-  blue: '\033[0;34m',
-  nc: '\033[0m',
+  green: '\x1b[0;32m',
+  red: '\x1b[0;31m',
+  yellow: '\x1b[1;33m',
+  blue: '\x1b[0;34m',
+  nc: '\x1b[0m',
 };
 
 console.log('╔════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════╗');
