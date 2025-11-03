@@ -65,8 +65,8 @@ export const SEPOLIA_CONTRACTS = {
     /** aPNTs v2.0.0 - AAStar community gas token for testing (deployed: 2025-11-01) */
     aPNTs: '0xBD0710596010a157B88cd141d797E8Ad4bb2306b',
 
-    /** bPNTs v2.0.0 - BuilderDAO community gas token for testing (deployed: 2025-11-01) */
-    bPNTs: '0xF223660d24c436B5BfadFEF68B5051bf45E7C995',
+    /** bPNTs v2.0.0 - BreadCommunity gas token for testing (deployed: 2025-11-03) */
+    bPNTs: '0x70Da2c1B7Fcf471247Bc3B09f8927a4ab1751Ba3',
   },
 
   // ========================================
@@ -112,12 +112,12 @@ export const SEPOLIA_CONTRACTS = {
       stake: '50', // 50 GToken staked in Registry
     },
 
-    /** BuilderDAO Community - Test community for development (registered: 2025-11-01) */
-    builderDao: {
-      owner: '0x3c053322AfBEB5B2C9917A6Cbda590f1736590cd', // Deployer 2
-      gasToken: '0xF223660d24c436B5BfadFEF68B5051bf45E7C995', // bPNTs (test token)
-      ensName: 'builderdao.eth',
-      name: 'BuilderDAO',
+    /** BreadCommunity - Test community for development (registered: 2025-11-03) */
+    breadCommunity: {
+      owner: '0xe24b6f321B0140716a2b671ed0D983bb64E7DaFA', // OWNER2
+      gasToken: '0x70Da2c1B7Fcf471247Bc3B09f8927a4ab1751Ba3', // bPNTs (test token)
+      ensName: 'bread.eth',
+      name: 'BreadCommunity',
       stake: '50', // 50 GToken staked in Registry
     },
   },
@@ -406,6 +406,6 @@ export function getCommunities(network: ContractNetwork) {
  * console.log(aastar.gasToken); // aPNTs address
  * ```
  */
-export function getCommunity(network: ContractNetwork, communityName: 'aastar' | 'builderDao') {
+export function getCommunity(network: ContractNetwork, communityName: 'aastar' | 'breadCommunity') {
   return getCommunities(network)[communityName];
 }
