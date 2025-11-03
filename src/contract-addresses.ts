@@ -26,12 +26,19 @@ export const TOKEN_ADDRESSES = {
 } as const;
 
 /**
- * Test Token Addresses
+ * Test Token Addresses (For Development & Testing)
  */
 export const TEST_TOKEN_ADDRESSES = {
   mockUSDT: '0x14EaC6C3D49AEDff3D59773A7d7bfb50182bCfDc',
   aPNTs: '0xBD0710596010a157B88cd141d797E8Ad4bb2306b',
   bPNTs: '0x70Da2c1B7Fcf471247Bc3B09f8927a4ab1751Ba3',
+} as const;
+
+/**
+ * Test Account Addresses (For Development & Testing)
+ */
+export const TEST_ACCOUNT_ADDRESSES = {
+  simpleAccountFactory: '0x8B516A71c134a4b5196775e63b944f88Cc637F2b',
 } as const;
 
 /**
@@ -72,6 +79,7 @@ export const ALL_ADDRESSES = {
   ...CORE_ADDRESSES,
   ...TOKEN_ADDRESSES,
   ...TEST_TOKEN_ADDRESSES,
+  ...TEST_ACCOUNT_ADDRESSES,
   ...PAYMASTER_ADDRESSES,
   ...MONITORING_ADDRESSES,
   ...OFFICIAL_ADDRESSES,

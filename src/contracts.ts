@@ -12,6 +12,7 @@ import {
   CORE_ADDRESSES,
   TOKEN_ADDRESSES,
   TEST_TOKEN_ADDRESSES,
+  TEST_ACCOUNT_ADDRESSES,
   PAYMASTER_ADDRESSES,
   MONITORING_ADDRESSES,
   OFFICIAL_ADDRESSES,
@@ -25,6 +26,7 @@ export type ContractCategory =
   | 'core'          // SuperPaymaster V2, Registry, GToken, GTokenStaking, PaymasterFactory
   | 'tokens'        // xPNTsFactory, MySBT
   | 'testTokens'    // Mock tokens for testing (USDT, aPNTs, bPNTs)
+  | 'testAccounts'  // Test accounts for development (SimpleAccountFactory)
   | 'paymaster'     // PaymasterV4_1 (AOA mode)
   | 'monitoring'    // DVT, BLS
   | 'official'      // EntryPoint
@@ -48,6 +50,11 @@ export const SEPOLIA_CONTRACTS = {
   // Test Tokens (For Development & Testing)
   // ========================================
   testTokens: TEST_TOKEN_ADDRESSES,
+
+  // ========================================
+  // Test Accounts (For Development & Testing)
+  // ========================================
+  testAccounts: TEST_ACCOUNT_ADDRESSES,
 
   // ========================================
   // Paymaster V4_1 (AOA Mode - Independent Paymaster)
@@ -224,6 +231,37 @@ export function getTestTokenContracts(network: ContractNetwork) {
  */
 export function getPaymasterV4_1(network: ContractNetwork): string {
   return getContracts(network).paymaster.paymasterV4_1;
+}
+
+/**
+ * Get test account contracts (SimpleAccountFactory, etc.)
+ *
+ * @param network - Network name
+ * @returns Test account contract addresses
+ *
+ * @example
+ * ```ts
+ * const testAccounts = getTestAccounts('sepolia');
+ * console.log(testAccounts.simpleAccountFactory);
+ * ```
+ */
+export function getTestAccounts(network: ContractNetwork) {
+  return getContracts(network).testAccounts;
+}
+
+/**
+ * Get SimpleAccountFactory address
+ *
+ * @param network - Network name
+ * @returns SimpleAccountFactory address
+ *
+ * @example
+ * ```ts
+ * const factory = getSimpleAccountFactory('sepolia');
+ * ```
+ */
+export function getSimpleAccountFactory(network: ContractNetwork): string {
+  return getContracts(network).testAccounts.simpleAccountFactory;
 }
 
 /**
