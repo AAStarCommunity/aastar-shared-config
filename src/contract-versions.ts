@@ -171,7 +171,7 @@ export const SEPOLIA_V2_VERSIONS = {
       name: 'bPNTs',
       version: '2.0.0',
       versionCode: 20000,
-      deployedAt: '2025-11-01',
+      deployedAt: '2025-11-03',
       address: '0x70Da2c1B7Fcf471247Bc3B09f8927a4ab1751Ba3',
       features: [
         'VERSION interface',
