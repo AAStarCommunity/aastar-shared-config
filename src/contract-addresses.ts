@@ -22,7 +22,7 @@ export const CORE_ADDRESSES = {
  */
 export const TOKEN_ADDRESSES = {
   xPNTsFactory: '0x9dD72cB42427fC9F7Bf0c949DB7def51ef29D6Bd',
-  mySBT: '0x02dbB53442631398473862b757B703688860205a', // MySBT v2.4.1 (2025-11-05) - Added mintWithAutoStake() function
+  mySBT: '0xD20F64718485E8aA317c0f353420cdB147661b20', // MySBT v2.4.2 (2025-11-05) - safeMint() + mintWithAutoStake() optimized under 24KB
 } as const;
 
 /**

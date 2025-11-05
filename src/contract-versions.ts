@@ -145,8 +145,8 @@ export const SEPOLIA_V2_VERSIONS = {
 
     mySBT: {
       name: 'MySBT',
-      version: '2.4.1',
-      versionCode: 20401,
+      version: '2.4.2',
+      versionCode: 20402,
       deployedAt: '2025-11-05',
       address: TOKEN_ADDRESSES.mySBT,
       features: [
@@ -156,7 +156,9 @@ export const SEPOLIA_V2_VERSIONS = {
         'Time-based reputation',
         'Membership management',
         'GToken mint fee (burn)',
+        'safeMint() - DAO-only faucet minting',
         'mintWithAutoStake() - one-transaction mint with automatic staking',
+        'Optimized under 24KB (24,458 bytes)',
       ],
     } as ContractVersion,
   },
