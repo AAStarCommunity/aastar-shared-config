@@ -3,66 +3,27 @@
     "type": "constructor",
     "inputs": [
       {
-        "name": "_gtoken",
+        "name": "_g",
         "type": "address",
         "internalType": "address"
       },
       {
-        "name": "_staking",
+        "name": "_s",
         "type": "address",
         "internalType": "address"
       },
       {
-        "name": "_registry",
+        "name": "_r",
         "type": "address",
         "internalType": "address"
       },
       {
-        "name": "_dao",
+        "name": "_d",
         "type": "address",
         "internalType": "address"
       }
     ],
     "stateMutability": "nonpayable"
-  },
-  {
-    "type": "function",
-    "name": "ACTIVITY_BONUS",
-    "inputs": [],
-    "outputs": [
-      {
-        "name": "",
-        "type": "uint256",
-        "internalType": "uint256"
-      }
-    ],
-    "stateMutability": "view"
-  },
-  {
-    "type": "function",
-    "name": "ACTIVITY_WINDOW",
-    "inputs": [],
-    "outputs": [
-      {
-        "name": "",
-        "type": "uint256",
-        "internalType": "uint256"
-      }
-    ],
-    "stateMutability": "view"
-  },
-  {
-    "type": "function",
-    "name": "BASE_REPUTATION",
-    "inputs": [],
-    "outputs": [
-      {
-        "name": "",
-        "type": "uint256",
-        "internalType": "uint256"
-      }
-    ],
-    "stateMutability": "view"
   },
   {
     "type": "function",
@@ -99,58 +60,6 @@
         "name": "",
         "type": "address",
         "internalType": "address"
-      }
-    ],
-    "stateMutability": "view"
-  },
-  {
-    "type": "function",
-    "name": "MIN_ACTIVITY_INTERVAL",
-    "inputs": [],
-    "outputs": [
-      {
-        "name": "",
-        "type": "uint256",
-        "internalType": "uint256"
-      }
-    ],
-    "stateMutability": "view"
-  },
-  {
-    "type": "function",
-    "name": "NFT_BASE_SCORE_PER_MONTH",
-    "inputs": [],
-    "outputs": [
-      {
-        "name": "",
-        "type": "uint256",
-        "internalType": "uint256"
-      }
-    ],
-    "stateMutability": "view"
-  },
-  {
-    "type": "function",
-    "name": "NFT_MAX_MONTHS",
-    "inputs": [],
-    "outputs": [
-      {
-        "name": "",
-        "type": "uint256",
-        "internalType": "uint256"
-      }
-    ],
-    "stateMutability": "view"
-  },
-  {
-    "type": "function",
-    "name": "NFT_TIME_UNIT",
-    "inputs": [],
-    "outputs": [
-      {
-        "name": "",
-        "type": "uint256",
-        "internalType": "uint256"
       }
     ],
     "stateMutability": "view"
@@ -265,17 +174,17 @@
     "name": "bindCommunityNFT",
     "inputs": [
       {
-        "name": "community",
+        "name": "",
         "type": "address",
         "internalType": "address"
       },
       {
-        "name": "nftContract",
+        "name": "nc",
         "type": "address",
         "internalType": "address"
       },
       {
-        "name": "nftTokenId",
+        "name": "nid",
         "type": "uint256",
         "internalType": "uint256"
       }
@@ -288,12 +197,12 @@
     "name": "bindNFT",
     "inputs": [
       {
-        "name": "nftContract",
+        "name": "nc",
         "type": "address",
         "internalType": "address"
       },
       {
-        "name": "nftTokenId",
+        "name": "nid",
         "type": "uint256",
         "internalType": "uint256"
       }
@@ -307,7 +216,7 @@
     "inputs": [],
     "outputs": [
       {
-        "name": "netAmount",
+        "name": "net",
         "type": "uint256",
         "internalType": "uint256"
       }
@@ -351,17 +260,17 @@
     "name": "delegateAvatarUsage",
     "inputs": [
       {
-        "name": "nftContract",
+        "name": "nc",
         "type": "address",
         "internalType": "address"
       },
       {
-        "name": "nftTokenId",
+        "name": "nid",
         "type": "uint256",
         "internalType": "uint256"
       },
       {
-        "name": "delegatee",
+        "name": "del",
         "type": "address",
         "internalType": "address"
       }
@@ -374,14 +283,14 @@
     "name": "getAllNFTBindings",
     "inputs": [
       {
-        "name": "tokenId",
+        "name": "tid",
         "type": "uint256",
         "internalType": "uint256"
       }
     ],
     "outputs": [
       {
-        "name": "bindings",
+        "name": "",
         "type": "tuple[]",
         "internalType": "struct IMySBT.NFTBinding[]",
         "components": [
@@ -434,7 +343,7 @@
     "name": "getAvatarURI",
     "inputs": [
       {
-        "name": "tokenId",
+        "name": "tid",
         "type": "uint256",
         "internalType": "uint256"
       }
@@ -453,19 +362,19 @@
     "name": "getCommunityMembership",
     "inputs": [
       {
-        "name": "tokenId",
+        "name": "tid",
         "type": "uint256",
         "internalType": "uint256"
       },
       {
-        "name": "community",
+        "name": "comm",
         "type": "address",
         "internalType": "address"
       }
     ],
     "outputs": [
       {
-        "name": "membership",
+        "name": "mem",
         "type": "tuple",
         "internalType": "struct IMySBT.CommunityMembership",
         "components": [
@@ -504,19 +413,19 @@
     "name": "getCommunityReputation",
     "inputs": [
       {
-        "name": "user",
+        "name": "u",
         "type": "address",
         "internalType": "address"
       },
       {
-        "name": "community",
+        "name": "comm",
         "type": "address",
         "internalType": "address"
       }
     ],
     "outputs": [
       {
-        "name": "score",
+        "name": "",
         "type": "uint256",
         "internalType": "uint256"
       }
@@ -528,14 +437,14 @@
     "name": "getGlobalReputation",
     "inputs": [
       {
-        "name": "user",
+        "name": "u",
         "type": "address",
         "internalType": "address"
       }
     ],
     "outputs": [
       {
-        "name": "score",
+        "name": "",
         "type": "uint256",
         "internalType": "uint256"
       }
@@ -547,14 +456,14 @@
     "name": "getMemberships",
     "inputs": [
       {
-        "name": "tokenId",
+        "name": "tid",
         "type": "uint256",
         "internalType": "uint256"
       }
     ],
     "outputs": [
       {
-        "name": "memberships",
+        "name": "",
         "type": "tuple[]",
         "internalType": "struct IMySBT.CommunityMembership[]",
         "components": [
@@ -593,14 +502,14 @@
     "name": "getSBTData",
     "inputs": [
       {
-        "name": "tokenId",
+        "name": "tid",
         "type": "uint256",
         "internalType": "uint256"
       }
     ],
     "outputs": [
       {
-        "name": "data",
+        "name": "",
         "type": "tuple",
         "internalType": "struct IMySBT.SBTData",
         "components": [
@@ -634,14 +543,14 @@
     "name": "getUserSBT",
     "inputs": [
       {
-        "name": "user",
+        "name": "u",
         "type": "address",
         "internalType": "address"
       }
     ],
     "outputs": [
       {
-        "name": "tokenId",
+        "name": "",
         "type": "uint256",
         "internalType": "uint256"
       }
@@ -701,7 +610,7 @@
     "name": "leaveCommunity",
     "inputs": [
       {
-        "name": "community",
+        "name": "comm",
         "type": "address",
         "internalType": "address"
       }
@@ -764,24 +673,53 @@
     "name": "mintOrAddMembership",
     "inputs": [
       {
-        "name": "user",
+        "name": "u",
         "type": "address",
         "internalType": "address"
       },
       {
-        "name": "metadata",
+        "name": "meta",
         "type": "string",
         "internalType": "string"
       }
     ],
     "outputs": [
       {
-        "name": "tokenId",
+        "name": "tid",
         "type": "uint256",
         "internalType": "uint256"
       },
       {
-        "name": "isNewMint",
+        "name": "isNew",
+        "type": "bool",
+        "internalType": "bool"
+      }
+    ],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "mintWithAutoStake",
+    "inputs": [
+      {
+        "name": "comm",
+        "type": "address",
+        "internalType": "address"
+      },
+      {
+        "name": "meta",
+        "type": "string",
+        "internalType": "string"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "tid",
+        "type": "uint256",
+        "internalType": "uint256"
+      },
+      {
+        "name": "isNew",
         "type": "bool",
         "internalType": "bool"
       }
@@ -858,7 +796,7 @@
     "name": "recordActivity",
     "inputs": [
       {
-        "name": "user",
+        "name": "u",
         "type": "address",
         "internalType": "address"
       }
@@ -878,6 +816,35 @@
       }
     ],
     "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "safeMint",
+    "inputs": [
+      {
+        "name": "to",
+        "type": "address",
+        "internalType": "address"
+      },
+      {
+        "name": "comm",
+        "type": "address",
+        "internalType": "address"
+      },
+      {
+        "name": "meta",
+        "type": "string",
+        "internalType": "string"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "tid",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ],
+    "stateMutability": "nonpayable"
   },
   {
     "type": "function",
@@ -1016,12 +983,12 @@
     "name": "setAvatar",
     "inputs": [
       {
-        "name": "nftContract",
+        "name": "nc",
         "type": "address",
         "internalType": "address"
       },
       {
-        "name": "nftTokenId",
+        "name": "nid",
         "type": "uint256",
         "internalType": "uint256"
       }
@@ -1034,7 +1001,7 @@
     "name": "setCommunityDefaultAvatar",
     "inputs": [
       {
-        "name": "avatarURI",
+        "name": "uri",
         "type": "string",
         "internalType": "string"
       }
@@ -1047,7 +1014,7 @@
     "name": "setDAOMultisig",
     "inputs": [
       {
-        "name": "newDAO",
+        "name": "d",
         "type": "address",
         "internalType": "address"
       }
@@ -1060,7 +1027,7 @@
     "name": "setMinLockAmount",
     "inputs": [
       {
-        "name": "amount",
+        "name": "a",
         "type": "uint256",
         "internalType": "uint256"
       }
@@ -1073,7 +1040,7 @@
     "name": "setMintFee",
     "inputs": [
       {
-        "name": "fee",
+        "name": "f",
         "type": "uint256",
         "internalType": "uint256"
       }
@@ -1086,7 +1053,7 @@
     "name": "setRegistry",
     "inputs": [
       {
-        "name": "registry",
+        "name": "r",
         "type": "address",
         "internalType": "address"
       }
@@ -1099,7 +1066,7 @@
     "name": "setReputationCalculator",
     "inputs": [
       {
-        "name": "calculator",
+        "name": "c",
         "type": "address",
         "internalType": "address"
       }
@@ -1193,24 +1160,24 @@
     "name": "userMint",
     "inputs": [
       {
-        "name": "communityToJoin",
+        "name": "comm",
         "type": "address",
         "internalType": "address"
       },
       {
-        "name": "metadata",
+        "name": "meta",
         "type": "string",
         "internalType": "string"
       }
     ],
     "outputs": [
       {
-        "name": "tokenId",
+        "name": "tid",
         "type": "uint256",
         "internalType": "uint256"
       },
       {
-        "name": "isNewMint",
+        "name": "isNew",
         "type": "bool",
         "internalType": "bool"
       }
@@ -1241,19 +1208,19 @@
     "name": "verifyCommunityMembership",
     "inputs": [
       {
-        "name": "user",
+        "name": "u",
         "type": "address",
         "internalType": "address"
       },
       {
-        "name": "community",
+        "name": "comm",
         "type": "address",
         "internalType": "address"
       }
     ],
     "outputs": [
       {
-        "name": "isValid",
+        "name": "",
         "type": "bool",
         "internalType": "bool"
       }
@@ -1864,14 +1831,8 @@
   },
   {
     "type": "error",
-    "name": "CommunityNotRegistered",
-    "inputs": [
-      {
-        "name": "community",
-        "type": "address",
-        "internalType": "address"
-      }
-    ]
+    "name": "E",
+    "inputs": []
   },
   {
     "type": "error",
@@ -1993,129 +1954,6 @@
   },
   {
     "type": "error",
-    "name": "InvalidAddress",
-    "inputs": [
-      {
-        "name": "addr",
-        "type": "address",
-        "internalType": "address"
-      }
-    ]
-  },
-  {
-    "type": "error",
-    "name": "InvalidParameter",
-    "inputs": [
-      {
-        "name": "param",
-        "type": "string",
-        "internalType": "string"
-      }
-    ]
-  },
-  {
-    "type": "error",
-    "name": "MembershipAlreadyExists",
-    "inputs": [
-      {
-        "name": "tokenId",
-        "type": "uint256",
-        "internalType": "uint256"
-      },
-      {
-        "name": "community",
-        "type": "address",
-        "internalType": "address"
-      }
-    ]
-  },
-  {
-    "type": "error",
-    "name": "MembershipNotFound",
-    "inputs": [
-      {
-        "name": "tokenId",
-        "type": "uint256",
-        "internalType": "uint256"
-      },
-      {
-        "name": "community",
-        "type": "address",
-        "internalType": "address"
-      }
-    ]
-  },
-  {
-    "type": "error",
-    "name": "NFTAlreadyBound",
-    "inputs": [
-      {
-        "name": "nftContract",
-        "type": "address",
-        "internalType": "address"
-      },
-      {
-        "name": "nftTokenId",
-        "type": "uint256",
-        "internalType": "uint256"
-      }
-    ]
-  },
-  {
-    "type": "error",
-    "name": "NFTNotOwned",
-    "inputs": [
-      {
-        "name": "user",
-        "type": "address",
-        "internalType": "address"
-      },
-      {
-        "name": "nftContract",
-        "type": "address",
-        "internalType": "address"
-      },
-      {
-        "name": "nftTokenId",
-        "type": "uint256",
-        "internalType": "uint256"
-      }
-    ]
-  },
-  {
-    "type": "error",
-    "name": "NoSBTFound",
-    "inputs": [
-      {
-        "name": "user",
-        "type": "address",
-        "internalType": "address"
-      }
-    ]
-  },
-  {
-    "type": "error",
-    "name": "NotAuthorizedForNFT",
-    "inputs": [
-      {
-        "name": "user",
-        "type": "address",
-        "internalType": "address"
-      },
-      {
-        "name": "nftContract",
-        "type": "address",
-        "internalType": "address"
-      },
-      {
-        "name": "nftTokenId",
-        "type": "uint256",
-        "internalType": "uint256"
-      }
-    ]
-  },
-  {
-    "type": "error",
     "name": "ReentrancyGuardReentrantCall",
     "inputs": []
   },
@@ -2125,22 +1963,6 @@
     "inputs": [
       {
         "name": "token",
-        "type": "address",
-        "internalType": "address"
-      }
-    ]
-  },
-  {
-    "type": "error",
-    "name": "TransferNotAllowed",
-    "inputs": []
-  },
-  {
-    "type": "error",
-    "name": "Unauthorized",
-    "inputs": [
-      {
-        "name": "caller",
         "type": "address",
         "internalType": "address"
       }
