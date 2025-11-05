@@ -92,9 +92,9 @@ export const SEPOLIA_V2_VERSIONS = {
 
     gTokenStaking: {
       name: 'GTokenStaking',
-      version: '2.0.0',
-      versionCode: 20000,
-      deployedAt: '2025-11-01',
+      version: '2.0.1',
+      versionCode: 20001,
+      deployedAt: '2025-11-05',
       address: CORE_ADDRESSES.gTokenStaking,
       features: [
         'VERSION interface',
@@ -104,6 +104,7 @@ export const SEPOLIA_V2_VERSIONS = {
         'Percentage-based exit fee',
         'Multiple locker support',
         'Uses new GToken v2.0.0',
+        'stakeFor() function - stake on behalf of users',
       ],
     } as ContractVersion,
 
@@ -144,9 +145,9 @@ export const SEPOLIA_V2_VERSIONS = {
 
     mySBT: {
       name: 'MySBT',
-      version: '2.4.0',
-      versionCode: 20400,
-      deployedAt: '2025-11-01',
+      version: '2.4.1',
+      versionCode: 20401,
+      deployedAt: '2025-11-05',
       address: TOKEN_ADDRESSES.mySBT,
       features: [
         'VERSION interface',
@@ -155,6 +156,7 @@ export const SEPOLIA_V2_VERSIONS = {
         'Time-based reputation',
         'Membership management',
         'GToken mint fee (burn)',
+        'mintWithAutoStake() - one-transaction mint with automatic staking',
       ],
     } as ContractVersion,
   },

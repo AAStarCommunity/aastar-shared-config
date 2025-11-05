@@ -13,7 +13,7 @@ export const CORE_ADDRESSES = {
   gToken: '0x99cCb70646Be7A5aeE7aF98cE853a1EA1A676DCc',
   superPaymasterV2: '0x95B20d8FdF173a1190ff71e41024991B2c5e58eF',
   registry: '0xf384c592D5258c91805128291c5D4c069DD30CA6',
-  gTokenStaking: '0x60Bd54645b0fDabA1114B701Df6f33C4ecE87fEa',
+  gTokenStaking: '0xbEbF9b4c6a4cDB92Ac184aF211AdB13a0b9BF6c0', // v2.0.1 (2025-11-05) - Added stakeFor() function
   paymasterFactory: '0x65Cf6C4ab3d40f3C919b6F3CADC09Efb72817920',
 } as const;
 
@@ -22,7 +22,7 @@ export const CORE_ADDRESSES = {
  */
 export const TOKEN_ADDRESSES = {
   xPNTsFactory: '0x9dD72cB42427fC9F7Bf0c949DB7def51ef29D6Bd',
-  mySBT: '0x73E635Fc9eD362b7061495372B6eDFF511D9E18F',
+  mySBT: '0x02dbB53442631398473862b757B703688860205a', // MySBT v2.4.1 (2025-11-05) - Added mintWithAutoStake() function
 } as const;
 
 /**
