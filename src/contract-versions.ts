@@ -145,9 +145,9 @@ export const SEPOLIA_V2_VERSIONS = {
 
     mySBT: {
       name: 'MySBT',
-      version: '2.4.2',
-      versionCode: 20402,
-      deployedAt: '2025-11-05',
+      version: '2.4.3',
+      versionCode: 20403,
+      deployedAt: '2025-11-06',
       address: TOKEN_ADDRESSES.mySBT,
       features: [
         'VERSION interface',
@@ -157,8 +157,9 @@ export const SEPOLIA_V2_VERSIONS = {
         'Membership management',
         'GToken mint fee (burn)',
         'safeMint() - DAO-only faucet minting',
-        'mintWithAutoStake() - one-transaction mint with automatic staking',
-        'Optimized under 24KB (24,458 bytes)',
+        'mintWithAutoStake() - FIXED: correct token transfer order for stake + burn',
+        'Highly optimized: 509 lines, 24,395 bytes (within 24KB limit)',
+        'Tested with Mycelium community (0x411BD567E46C0781248dbB6a9211891C032885e5)',
       ],
     } as ContractVersion,
   },

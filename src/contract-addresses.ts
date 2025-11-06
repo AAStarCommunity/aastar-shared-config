@@ -22,7 +22,7 @@ export const CORE_ADDRESSES = {
  */
 export const TOKEN_ADDRESSES = {
   xPNTsFactory: '0x9dD72cB42427fC9F7Bf0c949DB7def51ef29D6Bd',
-  mySBT: '0xD20F64718485E8aA317c0f353420cdB147661b20', // MySBT v2.4.2 (2025-11-05) - safeMint() + mintWithAutoStake() optimized under 24KB
+  mySBT: '0xD1e6BDfb907EacD26FF69a40BBFF9278b1E7Cf5C', // MySBT v2.4.3 (2025-11-06) - Fixed mintWithAutoStake() bug, 509 lines, 24,395 bytes
 } as const;
 
 /**
@@ -70,6 +70,13 @@ export const OFFICIAL_ADDRESSES = {
 export const COMMUNITY_OWNERS = {
   aastarOwner: '0x411BD567E46C0781248dbB6a9211891C032885e5', // Deployer 1
   breadCommunityOwner: '0xe24b6f321B0140716a2b671ed0D983bb64E7DaFA', // OWNER2
+} as const;
+
+/**
+ * Test Community Addresses
+ */
+export const TEST_COMMUNITIES = {
+  mycelium: '0x411BD567E46C0781248dbB6a9211891C032885e5', // Mycelium community (permissionless mint enabled, 100 GT staked)
 } as const;
 
 /**
