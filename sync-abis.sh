@@ -75,7 +75,7 @@ sync_abi "PaymasterFactory" "PaymasterFactory.sol" "PaymasterFactory"
 
 # Token System
 sync_abi "xPNTsToken" "xPNTsToken.sol" "xPNTsToken"
-sync_abi "MySBT_v2_4_2" "MySBT_v2.4.2.sol" "MySBT"
+sync_abi "MySBT_v2_4_3" "MySBT_v2.4.3.sol" "MySBT"
 sync_abi "xPNTsFactory" "xPNTsFactory.sol" "xPNTsFactory"
 
 # Monitoring System
