@@ -5,6 +5,22 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.3.1] - 2025-11-08
+
+### Added
+- **Community Configurations**: New `communities.ts` module with typed community configs
+  - `AASTAR_COMMUNITY`: AAstar community (PAYMASTER_SUPER, aPNTs, MySBT)
+  - `BREAD_COMMUNITY`: Bread community (PAYMASTER_AOA, bPNTs, MySBT)
+  - Helper functions: `getCommunityConfig()`, `getAllCommunityConfigs()`, `isRegisteredCommunity()`
+- **Test Communities**: Updated `TEST_COMMUNITIES` with AAstar and Bread communities
+  - AAstar: `0x411BD567E46C0781248dbB6a9211891C032885e5` (50 GT staked)
+  - Bread: `0xe24b6f321B0140716a2b671ed0D983bb64E7DaFA` (50 GT staked)
+
+### Changed
+- Updated test community documentation with detailed metadata
+- Added community-to-token mappings (aPNTs/bPNTs)
+- Added MySBT as supported SBT for both communities
+
 ## [0.3.0] - 2025-11-08
 
 ### Added

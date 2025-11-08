@@ -73,10 +73,12 @@ export const COMMUNITY_OWNERS = {
 } as const;
 
 /**
- * Test Community Addresses
+ * Test Community Addresses (Registered in Registry v2.2.0 on 2025-11-08)
  */
 export const TEST_COMMUNITIES = {
-  mycelium: '0x411BD567E46C0781248dbB6a9211891C032885e5', // Mycelium community (permissionless mint enabled, 100 GT staked)
+  aastar: '0x411BD567E46C0781248dbB6a9211891C032885e5', // AAstar community (PAYMASTER_SUPER, aPNTs, MySBT, 50 GT staked)
+  bread: '0xe24b6f321B0140716a2b671ed0D983bb64E7DaFA', // Bread community (PAYMASTER_AOA, bPNTs, MySBT, 50 GT staked)
+  mycelium: '0x411BD567E46C0781248dbB6a9211891C032885e5', // Legacy alias for aastar
 } as const;
 
 /**
