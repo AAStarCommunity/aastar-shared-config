@@ -11,8 +11,8 @@
  */
 export const CORE_ADDRESSES = {
   gToken: '0x99cCb70646Be7A5aeE7aF98cE853a1EA1A676DCc',
-  superPaymasterV2: '0x95B20d8FdF173a1190ff71e41024991B2c5e58eF',
-  registry: '0xf384c592D5258c91805128291c5D4c069DD30CA6',
+  superPaymasterV2: '0xfaB5B2A129DF8308a70DA2fE77c61001e4Df58BC', // v2.0.1 (2025-11-08) - Oracle security fix + new Registry
+  registry: '0x028aB52B4E0EF26820043ca4F1B5Fe14FfC1EF75', // v2.2.0 (2025-11-08) - Auto-stake registration
   gTokenStaking: '0xbEbF9b4c6a4cDB92Ac184aF211AdB13a0b9BF6c0', // v2.0.1 (2025-11-05) - Added stakeFor() function
   paymasterFactory: '0x65Cf6C4ab3d40f3C919b6F3CADC09Efb72817920',
 } as const;
