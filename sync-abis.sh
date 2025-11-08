@@ -46,8 +46,8 @@ sync_abi() {
         return 1
     fi
 
-    # Extract only the ABI field
-    cat "$source_file" | jq '.abi' > "$dest_file"
+    # Extract only the ABI field (compact single-line format)
+    cat "$source_file" | jq -c '.abi' > "$dest_file"
 
     echo -e "${GREEN}✅ Synced $contract_name${NC}"
     echo "   Source: $source_file"
