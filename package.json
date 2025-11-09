@@ -21,7 +21,10 @@
     "build": "tsup src/index.ts --format cjs,esm --dts",
     "dev": "tsup src/index.ts --format cjs,esm --dts --watch",
     "verify": "node verify-onchain-versions.mjs",
-    "prepublishOnly": "./sync-abis.sh && pnpm build"
+    "sync-abis": "./sync-abis.sh",
+    "sync-versions": "node sync-versions.mjs",
+    "sync-all": "./sync-abis.sh && node sync-versions.mjs",
+    "prepublishOnly": "./sync-abis.sh && node sync-versions.mjs && pnpm build"
   },
   "keywords": [
     "aastar",

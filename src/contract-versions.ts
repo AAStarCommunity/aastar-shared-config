@@ -60,9 +60,9 @@ export const SEPOLIA_V2_VERSIONS = {
 
     superPaymasterV2: {
       name: 'SuperPaymasterV2',
-      version: '2.0.0',
-      versionCode: 20000,
-      deployedAt: '2025-11-01',
+      version: '2.1.0',
+      versionCode: 20100,
+      deployedAt: '2025-11-09',
       address: CORE_ADDRESSES.superPaymasterV2,
       features: [
         'VERSION interface',
@@ -70,14 +70,15 @@ export const SEPOLIA_V2_VERSIONS = {
         'xPNTs gas token support',
         'Reputation-based pricing',
         'Multi-operator support',
+        'registerOperatorWithAutoStake (1-step registration)',
       ],
     } as ContractVersion,
 
     registry: {
       name: 'Registry',
-      version: '2.1.4',
-      versionCode: 20104,
-      deployedAt: '2025-11-02',
+      version: '2.2.1',
+      versionCode: 20201,
+      deployedAt: '2025-11-09',
       address: CORE_ADDRESSES.registry,
       features: [
         'VERSION interface',
@@ -87,6 +88,7 @@ export const SEPOLIA_V2_VERSIONS = {
         'GToken staking requirement',
         'Slash mechanism',
         'Uses new GTokenStaking with GToken v2.0.0',
+        'isRegistered mapping (duplicate prevention)',
       ],
     } as ContractVersion,
 
@@ -352,6 +354,6 @@ export const V2_SUMMARY = {
     testTokens: 2, // aPNTs, bPNTs
     monitoring: 2, // DVTValidator, BLSAggregator
   },
-  latestDeployment: '2025-11-01',
+  latestDeployment: '2025-11-09',
   allContractsHaveVersion: true, // All V2 contracts now have VERSION interface
 } as const;
