@@ -22,7 +22,7 @@ export const CORE_ADDRESSES = {
  */
 export const TOKEN_ADDRESSES = {
   xPNTsFactory: '0x9dD72cB42427fC9F7Bf0c949DB7def51ef29D6Bd',
-  mySBT: '0xD1e6BDfb907EacD26FF69a40BBFF9278b1E7Cf5C', // MySBT v2.4.3 (2025-11-06) - Fixed mintWithAutoStake() bug, 509 lines, 24,395 bytes
+  mySBT: '0xc364A68Abd38a6428513abE519dEEA410803BB5A', // MySBT v2.4.4 (2025-11-19) - IVersioned interface + airdropMint, 18KB (IR optimized)
 } as const;
 
 /**
