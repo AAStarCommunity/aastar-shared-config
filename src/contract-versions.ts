@@ -60,9 +60,9 @@ export const SEPOLIA_V2_VERSIONS = {
 
     superPaymasterV2: {
       name: 'SuperPaymasterV2',
-      version: '2.1.0',
-      versionCode: 20100,
-      deployedAt: '2025-11-09',
+      version: '2.3.2',
+      versionCode: 20302,
+      deployedAt: '2025-11-20',
       address: CORE_ADDRESSES.superPaymasterV2,
       features: [
         'VERSION interface',
@@ -71,6 +71,12 @@ export const SEPOLIA_V2_VERSIONS = {
         'Reputation-based pricing',
         'Multi-operator support',
         'registerOperatorWithAutoStake (1-step registration)',
+        'CEI pattern fix - state changes before external calls',
+        'nonReentrant protection added',
+        'Price cache auto-update fix (was broken in v2.3.1)',
+        'Storage packing optimization (~800 gas saved)',
+        'Batch state updates (~200-400 gas saved)',
+        'Total gas optimization: ~5.5-11.2k gas vs v2.3.1',
       ],
     } as ContractVersion,
 

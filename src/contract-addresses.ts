@@ -11,7 +11,7 @@
  */
 export const CORE_ADDRESSES = {
   gToken: '0x99cCb70646Be7A5aeE7aF98cE853a1EA1A676DCc',
-  superPaymasterV2: '0xD6aa17587737C59cbb82986Afbac88Db75771857', // v2.1.0 (2025-11-09) - registerOperatorWithAutoStake (1-step registration)
+  superPaymasterV2: '0xe8c579dc426eC22168c3286da1aBd5458a5904A3', // v2.3.2 (2025-11-20) - CEI fix, nonReentrant, cache fix, storage packing (~11.2k gas saved)
   registry: '0x49245E1f3c2dD99b3884ffeD410d0605Cf4dC696', // v2.2.1 (2025-11-09) - isRegistered mapping (duplicate prevention)
   gTokenStaking: '0xbEbF9b4c6a4cDB92Ac184aF211AdB13a0b9BF6c0', // v2.0.1 (2025-11-05) - Added stakeFor() function
   paymasterFactory: '0x65Cf6C4ab3d40f3C919b6F3CADC09Efb72817920',
