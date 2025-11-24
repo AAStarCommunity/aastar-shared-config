@@ -60,9 +60,9 @@ export const SEPOLIA_V2_VERSIONS = {
 
     superPaymasterV2: {
       name: 'SuperPaymasterV2',
-      version: '2.3.2',
-      versionCode: 20302,
-      deployedAt: '2025-11-20',
+      version: '2.3.3',
+      versionCode: 20303,
+      deployedAt: '2024-11-24',
       address: CORE_ADDRESSES.superPaymasterV2,
       features: [
         'VERSION interface',
@@ -77,6 +77,8 @@ export const SEPOLIA_V2_VERSIONS = {
         'Storage packing optimization (~800 gas saved)',
         'Batch state updates (~200-400 gas saved)',
         'Total gas optimization: ~5.5-11.2k gas vs v2.3.1',
+        'Internal SBT registry - no external balanceOf() calls (~800 gas saved per tx)',
+        'MySBT callback pattern: registerSBTHolder() on mint, removeSBTHolder() on burn',
       ],
     } as ContractVersion,
 
@@ -153,13 +155,13 @@ export const SEPOLIA_V2_VERSIONS = {
 
     mySBT: {
       name: 'MySBT',
-      version: '2.4.4',
-      versionCode: 20404,
-      deployedAt: '2025-11-19',
+      version: '2.4.5',
+      versionCode: 20405,
+      deployedAt: '2024-11-24',
       address: TOKEN_ADDRESSES.mySBT,
       features: [
-        'IVersioned interface: version() returns 2004004, versionString() returns "v2.4.4"',
-        'VERSION constants: VERSION="2.4.4", VERSION_CODE=20404',
+        'IVersioned interface: version() returns 2004005, versionString() returns "v2.4.5"',
+        'VERSION constants: VERSION="2.4.5", VERSION_CODE=20405',
         'NFT architecture refactor',
         'Soulbound token (SBT)',
         'Time-based reputation',
@@ -171,7 +173,9 @@ export const SEPOLIA_V2_VERSIONS = {
         'Operator pays all costs: 0.4 GT per user (0.1 burn + 0.3 stake)',
         'True airdrop: Uses stakeFor() to stake on behalf of users',
         'Idempotent: Safe to call multiple times (adds membership if SBT exists)',
-        'IR optimized: 18KB bytecode (under 24KB limit)',
+        'Size optimized: 21KB bytecode (-21% vs v2.4.4, under 24KB limit)',
+        'SuperPaymaster V2.3.3 integration: registerSBTHolder() after mint, removeSBTHolder() before burn',
+        'Graceful degradation: try/catch for optional external calls',
         'Fully tested: 14/14 tests passed including IVersioned interface',
       ],
     } as ContractVersion,
