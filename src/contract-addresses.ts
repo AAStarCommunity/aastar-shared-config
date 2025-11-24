@@ -11,7 +11,7 @@
  */
 export const CORE_ADDRESSES = {
   gToken: '0x99cCb70646Be7A5aeE7aF98cE853a1EA1A676DCc',
-  superPaymasterV2: '0xe8c579dc426eC22168c3286da1aBd5458a5904A3', // v2.3.2 (2025-11-20) - CEI fix, nonReentrant, cache fix, storage packing (~11.2k gas saved)
+  superPaymasterV2: '0x7c3c355d9aa4723402bec2a35b61137b8a10d5db', // v2.3.3 (2024-11-24) - Integrated with MySBT v2.4.5, internal SBT registry
   registry: '0x49245E1f3c2dD99b3884ffeD410d0605Cf4dC696', // v2.2.1 (2025-11-09) - isRegistered mapping (duplicate prevention)
   gTokenStaking: '0xbEbF9b4c6a4cDB92Ac184aF211AdB13a0b9BF6c0', // v2.0.1 (2025-11-05) - Added stakeFor() function
   paymasterFactory: '0x65Cf6C4ab3d40f3C919b6F3CADC09Efb72817920',
@@ -22,7 +22,7 @@ export const CORE_ADDRESSES = {
  */
 export const TOKEN_ADDRESSES = {
   xPNTsFactory: '0x9dD72cB42427fC9F7Bf0c949DB7def51ef29D6Bd',
-  mySBT: '0xc364A68Abd38a6428513abE519dEEA410803BB5A', // MySBT v2.4.4 (2025-11-19) - IVersioned interface + airdropMint, 18KB (IR optimized)
+  mySBT: '0xa4eda5d023ea94a60b1d4b5695f022e1972858e7', // MySBT v2.4.5-optimized (2024-11-24) - Size optimized (21KB), SuperPaymaster callbacks, external extensions
 } as const;
 
 /**
