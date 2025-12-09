@@ -1,20 +1,36 @@
 /**
  * AAstar Smart Contract Addresses
  *
- * Last Updated: 2025-10-30
- * Source: SuperPaymaster/SUPERPAYMASTER_PRODUCT_OVERVIEW.md
+ * IMPORTANT: Contract addresses are defined in contract-addresses.ts
+ * This file imports and uses those addresses to maintain a single source of truth.
+ *
+ * For detailed version information (VERSION, VERSION_CODE, features),
+ * see contract-versions.ts
  */
+
+import {
+  CORE_ADDRESSES,
+  TOKEN_ADDRESSES,
+  TEST_TOKEN_ADDRESSES,
+  TEST_ACCOUNT_ADDRESSES,
+  PAYMASTER_ADDRESSES,
+  MONITORING_ADDRESSES,
+  OFFICIAL_ADDRESSES,
+  COMMUNITY_OWNERS,
+} from './contract-addresses';
 
 /**
  * Contract category types
  */
 export type ContractCategory =
-  | 'core'          // SuperPaymaster V2, Registry, GToken, GTokenStaking
-  | 'tokens'        // xPNTs, MySBT
-  | 'testTokens'    // Mock tokens for testing (USDT, etc.)
-  | 'paymaster'     // PaymasterV4 (AOA mode)
+  | 'core'          // SuperPaymaster V2, Registry, GToken, GTokenStaking, PaymasterFactory
+  | 'tokens'        // xPNTsFactory, MySBT
+  | 'testTokens'    // Mock tokens for testing (USDT, aPNTs, bPNTs)
+  | 'testAccounts'  // Test accounts for development (SimpleAccountFactory)
+  | 'paymaster'     // PaymasterV4_1 (AOA mode)
   | 'monitoring'    // DVT, BLS
-  | 'official';     // EntryPoint
+  | 'official'      // EntryPoint
+  | 'communities';  // Registered communities (AAStar, BuilderDAO)
 
 /**
  * Sepolia Testnet Contracts
@@ -23,64 +39,59 @@ export const SEPOLIA_CONTRACTS = {
   // ========================================
   // Core System (AOA+ Mode)
   // ========================================
-  core: {
-    /** SuperPaymaster V2 - Shared paymaster for AOA+ mode (deployed: 2025-10-25) */
-    superPaymasterV2: '0x50c4Daf685170aa29513BA6dd89B8417b5b0FE4a',
-
-    /** Registry v2.1 - Community registration with node types (deployed: 2025-10-27) */
-    registry: '0x529912C52a934fA02441f9882F50acb9b73A3c5B',
-
-    /** GToken - Governance token (sGT) (deployed: 2025-10-24) */
-    gToken: '0x868F843723a98c6EECC4BF0aF3352C53d5004147',
-
-    /** GTokenStaking - Stake, lock, slash management (deployed: 2025-10-24) */
-    gTokenStaking: '0x92eD5b659Eec9D5135686C9369440D71e7958527',
-  },
+  core: CORE_ADDRESSES,
 
   // ========================================
   // Token System
   // ========================================
-  tokens: {
-    /** xPNTsFactory - Unified architecture gas token factory (deployed: 2025-10-30) */
-    xPNTsFactory: '0xC2AFEA0F736403E7e61D3F7C7c6b4E5E63B5cab6',
-
-    /** MySBT v2.3 - White-label SBT for community identity (deployed: 2025-10-28) */
-    mySBT: '0xc1085841307d85d4a8dC973321Df2dF7c01cE5C8',
-  },
+  tokens: TOKEN_ADDRESSES,
 
   // ========================================
   // Test Tokens (For Development & Testing)
   // ========================================
-  testTokens: {
-    /** Mock USDT - Test token for payment testing (6 decimals) */
-    mockUSDT: '0x14EaC6C3D49AEDff3D59773A7d7bfb50182bCfDc',
-  },
+  testTokens: TEST_TOKEN_ADDRESSES,
 
   // ========================================
-  // Paymaster V4 (AOA Mode)
+  // Test Accounts (For Development & Testing)
   // ========================================
-  paymaster: {
-    /** PaymasterV4_1 - Independent paymaster for AOA mode (deployed: 2025-10-15) */
-    paymasterV4: '0x4D6A367aA183903968833Ec4AE361CFc8dDDBA38',
-  },
+  testAccounts: TEST_ACCOUNT_ADDRESSES,
+
+  // ========================================
+  // Paymaster V4_1 (AOA Mode - Independent Paymaster)
+  // ========================================
+  paymaster: PAYMASTER_ADDRESSES,
 
   // ========================================
   // DVT/BLS Monitoring System
   // ========================================
-  monitoring: {
-    /** DVTValidator - Distributed validator management (deployed: 2025-10-25) */
-    dvtValidator: '0x8E03495A45291084A73Cee65B986f34565321fb1',
-
-    /** BLSAggregator - BLS signature aggregation (deployed: 2025-10-25) */
-    blsAggregator: '0xA7df6789218C5a270D6DF033979698CAB7D7b728',
-  },
+  monitoring: MONITORING_ADDRESSES,
 
   // ========================================
   // Official Dependencies
   // ========================================
-  official: {
-    /** EntryPoint v0.7 - ERC-4337 official EntryPoint (cross-chain address) */
-    entryPoint: '0x0000000071727De22E5E9d8BAf0edAc6f37da032',
+  official: OFFICIAL_ADDRESSES,
+
+  // ========================================
+  // Test Communities (For Development & Testing)
+  // ========================================
+  communities: {
+    /** AAStar Community - Test community for development (registered: 2025-11-01) */
+    aastar: {
+      owner: COMMUNITY_OWNERS.aastarOwner,
+      gasToken: TEST_TOKEN_ADDRESSES.aPNTs,
+      ensName: 'aastar.eth',
+      name: 'AAStar',
+      stake: '50', // 50 GToken staked in Registry
+    },
+
+    /** BreadCommunity - Test community for development (registered: 2025-11-03) */
+    breadCommunity: {
+      owner: COMMUNITY_OWNERS.breadCommunityOwner,
+      gasToken: TEST_TOKEN_ADDRESSES.bPNTs,
+      ensName: 'bread.eth',
+      name: 'BreadCommunity',
+      stake: '50', // 50 GToken staked in Registry
+    },
   },
 } as const;
 
@@ -208,18 +219,49 @@ export function getTestTokenContracts(network: ContractNetwork) {
 }
 
 /**
- * Get PaymasterV4 address (AOA mode)
+ * Get PaymasterV4_1 address (AOA mode)
  *
  * @param network - Network name
- * @returns PaymasterV4 address
+ * @returns PaymasterV4_1 address
  *
  * @example
  * ```ts
- * const paymaster = getPaymasterV4('sepolia');
+ * const paymaster = getPaymasterV4_1('sepolia');
  * ```
  */
-export function getPaymasterV4(network: ContractNetwork): string {
-  return getContracts(network).paymaster.paymasterV4;
+export function getPaymasterV4_1(network: ContractNetwork): string {
+  return getContracts(network).paymaster.paymasterV4_1;
+}
+
+/**
+ * Get test account contracts (SimpleAccountFactory, etc.)
+ *
+ * @param network - Network name
+ * @returns Test account contract addresses
+ *
+ * @example
+ * ```ts
+ * const testAccounts = getTestAccounts('sepolia');
+ * console.log(testAccounts.simpleAccountFactory);
+ * ```
+ */
+export function getTestAccounts(network: ContractNetwork) {
+  return getContracts(network).testAccounts;
+}
+
+/**
+ * Get SimpleAccountFactory address
+ *
+ * @param network - Network name
+ * @returns SimpleAccountFactory address
+ *
+ * @example
+ * ```ts
+ * const factory = getSimpleAccountFactory('sepolia');
+ * ```
+ */
+export function getSimpleAccountFactory(network: ContractNetwork): string {
+  return getContracts(network).testAccounts.simpleAccountFactory;
 }
 
 /**
@@ -289,25 +331,31 @@ export function getContractNetworks(): ContractNetwork[] {
  */
 export const CONTRACT_METADATA = {
   sepolia: {
-    lastUpdated: '2025-10-30',
+    lastUpdated: '2025-11-02',
     networkId: 11155111,
     deploymentDates: {
       // Core System
-      superPaymasterV2: '2025-10-25',
-      registry: '2025-10-27',
-      gToken: '2025-10-24',
-      gTokenStaking: '2025-10-24',
+      gToken: '2025-11-01',            // v2.0.0 with VERSION interface
+      superPaymasterV2: '2025-11-01',  // v2.0.0 with VERSION interface
+      registry: '2025-11-02',          // v2.1.4 with allowPermissionlessMint default true
+      gTokenStaking: '2025-11-01',     // v2.0.0 with VERSION interface
 
       // Tokens
-      xPNTsFactory: '2025-10-30',
-      mySBT: '2025-10-28',
+      xPNTsFactory: '2025-11-01',      // v2.0.0 with VERSION interface
+      mySBT: '2025-11-01',             // v2.4.0 with VERSION interface + NFT refactor
 
       // Paymaster
-      paymasterV4: '2025-10-15',
+      paymasterV4_1: '2025-10-15',
+
+      // Tokens
+      aPNTs: '2025-10-30',
+
+      // Factories
+      paymasterFactory: '2025-11-01',      // v1.0.0
 
       // Monitoring
-      dvtValidator: '2025-10-25',
-      blsAggregator: '2025-10-25',
+      dvtValidator: '2025-11-01',      // v2.0.0 with VERSION interface
+      blsAggregator: '2025-11-01',     // v2.0.0 with VERSION interface
     },
   },
 } as const;
@@ -330,4 +378,37 @@ export function getDeploymentDate(network: ContractNetwork, contractName: string
   if (!metadata) return undefined;
 
   return (metadata.deploymentDates as Record<string, string>)[contractName];
+}
+
+/**
+ * Get registered communities
+ *
+ * @param network - Network name
+ * @returns Communities object
+ *
+ * @example
+ * ```ts
+ * const communities = getCommunities('sepolia');
+ * console.log(communities.aastar.owner);
+ * ```
+ */
+export function getCommunities(network: ContractNetwork) {
+  return getContracts(network).communities;
+}
+
+/**
+ * Get a specific community
+ *
+ * @param network - Network name
+ * @param communityName - Community name (aastar, builderDao)
+ * @returns Community information
+ *
+ * @example
+ * ```ts
+ * const aastar = getCommunity('sepolia', 'aastar');
+ * console.log(aastar.gasToken); // aPNTs address
+ * ```
+ */
+export function getCommunity(network: ContractNetwork, communityName: 'aastar' | 'breadCommunity') {
+  return getCommunities(network)[communityName];
 }

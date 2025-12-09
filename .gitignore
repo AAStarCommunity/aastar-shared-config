@@ -1,3 +1,6 @@
+# jhf add, for local test
+check-all-versions.mjs
+
 # Logs
 logs
 *.log
